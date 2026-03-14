@@ -220,6 +220,7 @@ export const decades = [
   { label: "2000s", value: 2000 },
   { label: "2010s", value: 2010 },
   { label: "2020s", value: 2020 },
+
 ];
 
 export const categoryLabels = {
