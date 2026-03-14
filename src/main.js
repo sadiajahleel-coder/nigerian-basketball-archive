@@ -29,19 +29,21 @@ function getVisible() {
   });
 }
 
+// ── NAV ──────────────────────────────────────────────────
 function nav() {
   return `<nav class="nav">
     <div class="nav__inner">
       <button class="nav__brand" data-nav="home">Nigeria Basketball Archive</button>
       <div class="nav__links">
         <button class="nav__link ${page==="home"?"active":""}" data-nav="home">Home</button>
-        <button class="nav__link ${page==="records"?"active":""}" data-nav="records">records</button>
+        <button class="nav__link ${page==="records"?"active":""}" data-nav="records">Records</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
       </div>
     </div>
   </nav>`;
 }
 
+// ── HOME ─────────────────────────────────────────────────
 function homePage() {
   const decadeList = [
     {v:1960,l:"1960s"},{v:1970,l:"1970s"},{v:1980,l:"1980s"},{v:1990,l:"1990s"},
@@ -63,7 +65,7 @@ function homePage() {
       <div class="hero__right">
         <p class="hero__stats-title">Archive at a glance</p>
         <div class="hero__stat"><div class="hero__stat-num">56</div><div class="hero__stat-label">Years Covered</div></div>
-        <div class="hero__stat"><div class="hero__stat-num">${records.length}</div><div class="hero__stat-label">Year records</div></div>
+        <div class="hero__stat"><div class="hero__stat-num">${records.length}</div><div class="hero__stat-label">Year Records</div></div>
         <div class="hero__stat"><div class="hero__stat-num">${totalEvents()}</div><div class="hero__stat-label">Events Recorded</div></div>
         <div class="hero__stat"><div class="hero__stat-num">NBBF</div><div class="hero__stat-label">Federation</div></div>
       </div>
@@ -132,6 +134,7 @@ function homePage() {
   </footer>`;
 }
 
+// ── RECORDS ───────────────────────────────────────────────
 function badge(cat) {
   return `<span class="badge badge--${cat}">${categoryLabels[cat]||cat}</span>`;
 }
@@ -181,7 +184,7 @@ function yearBlock(yr) {
 function recordsPage() {
   const visible = getVisible();
   const sorted = [...visible].sort((a,b) => b.year - a.year);
-  const label = decades.find(d => String(d.value) === String(state.decade))?.label || "All records";
+  const label = decades.find(d => String(d.value) === String(state.decade))?.label || "All Records";
   return `
   ${nav()}
   <div class="rp-header">
@@ -189,10 +192,10 @@ function recordsPage() {
       <div class="rp-crumb">
         <button class="rp-crumb__link" data-nav="home">Home</button>
         <span class="rp-crumb__sep">›</span>
-        <span class="rp-crumb__current">records</span>
+        <span class="rp-crumb__current">Records</span>
         ${state.decade !== "all" ? `<span class="rp-crumb__sep">›</span><span class="rp-crumb__current">${label}</span>` : ""}
       </div>
-      <h1 class="rp-header__title">${state.decade !== "all" ? label : "All records"}</h1>
+      <h1 class="rp-header__title">${state.decade !== "all" ? label : "All Records"}</h1>
     </div>
   </div>
   <div class="rp-controls">
@@ -217,6 +220,7 @@ function recordsPage() {
   </footer>`;
 }
 
+// ── ABOUT ────────────────────────────────────────────────
 function aboutPage() {
   return `
   ${nav()}
@@ -243,7 +247,7 @@ function aboutPage() {
     <p>The Nigeria Basketball Federation (NBBF), originally the Nigeria Amateur Basketball Association (NABBA), was founded in 1964. It governs basketball at all levels in Nigeria and is affiliated to FIBA and Africa Zone 3.</p>
     <h2>Digital Archive</h2>
     <p>This digital version was edited and built by <strong>Halima Abdul</strong>, making 56 years of Nigerian basketball history publicly accessible.</p>
-    <button class="about-page__btn" data-nav="records">Explore the records</button>
+    <button class="about-page__btn" data-nav="records">Explore the Records</button>
   </div>
   <footer class="footer">
     <div class="footer__inner">
@@ -253,6 +257,7 @@ function aboutPage() {
   </footer>`;
 }
 
+// ── RENDER ───────────────────────────────────────────────
 function render() {
   const app = document.getElementById("app");
   if (page === "home") app.innerHTML = homePage();
@@ -290,12 +295,17 @@ function bindToggles() {
 }
 
 function bindEvents() {
+  // All data-nav buttons
   document.querySelectorAll("[data-nav]").forEach(el => {
     el.addEventListener("click", () => navigate(el.dataset.nav));
   });
+
+  // Decade tiles on home
   document.querySelectorAll(".decade-tile").forEach(t => {
     t.addEventListener("click", () => navigate("records", { decade: t.dataset.decade }));
   });
+
+  // Hero search
   const heroSearch = document.getElementById("heroSearch");
   const heroBtn = document.getElementById("heroSearchBtn");
   if (heroBtn && heroSearch) {
@@ -307,10 +317,14 @@ function bindEvents() {
       if (e.key === "Enter") { state.search = heroSearch.value; navigate("records"); }
     });
   }
+
+  // Records search
   const rpSearch = document.getElementById("rpSearch");
   if (rpSearch) {
     rpSearch.addEventListener("input", e => { state.search = e.target.value; rebuildRecords(); });
   }
+
+  // Decade pills on records page
   document.querySelectorAll(".rp-pill").forEach(p => {
     p.addEventListener("click", () => {
       state.decade = p.dataset.decade;
@@ -319,12 +333,8 @@ function bindEvents() {
       rebuildRecords();
     });
   });
+
   bindToggles();
 }
 
 render();
-
-
-
-
-
