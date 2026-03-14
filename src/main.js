@@ -1,14 +1,14 @@
 import "./style.css";
-import { yearRecords, decades, categoryLabels } from "./data/records.js";
+import { records, decades, categoryLabels } from "./data/records.js";
 
 let page = "home";
 let state = { decade: "all", search: "" };
 
 function totalEvents() {
-  return yearRecords.reduce((s, yr) => s + yr.events.length, 0);
+  return records.reduce((s, yr) => s + yr.events.length, 0);
 }
 function decadeCount(val) {
-  return yearRecords.filter(yr => yr.decade === val).length;
+  return records.filter(yr => yr.decade === val).length;
 }
 
 function navigate(p, s = {}) {
@@ -20,7 +20,7 @@ function navigate(p, s = {}) {
 }
 
 function getVisible() {
-  return yearRecords.filter(yr => {
+  return records.filter(yr => {
     const decOk = state.decade === "all" || yr.decade === Number(state.decade);
     const q = state.search.toLowerCase();
     if (!q) return decOk;
@@ -63,7 +63,7 @@ function homePage() {
       <div class="hero__right">
         <p class="hero__stats-title">Archive at a glance</p>
         <div class="hero__stat"><div class="hero__stat-num">56</div><div class="hero__stat-label">Years Covered</div></div>
-        <div class="hero__stat"><div class="hero__stat-num">${yearRecords.length}</div><div class="hero__stat-label">Year Records</div></div>
+        <div class="hero__stat"><div class="hero__stat-num">${records.length}</div><div class="hero__stat-label">Year Records</div></div>
         <div class="hero__stat"><div class="hero__stat-num">${totalEvents()}</div><div class="hero__stat-label">Events Recorded</div></div>
         <div class="hero__stat"><div class="hero__stat-num">NBBF</div><div class="hero__stat-label">Federation</div></div>
       </div>
@@ -204,7 +204,7 @@ function recordsPage() {
     </div>
   </div>
   <div class="rp-main">
-    <p class="rp-count" id="rpCount">Showing <strong>${visible.length}</strong> of <strong>${yearRecords.length}</strong> years — click any row to expand</p>
+    <p class="rp-count" id="rpCount">Showing <strong>${visible.length}</strong> of <strong>${records.length}</strong> years — click any row to expand</p>
     <div id="ybContainer">
       ${sorted.length === 0 ? '<div class="empty-state">No records match your search.</div>' : sorted.map(yearBlock).join("")}
     </div>
@@ -265,7 +265,7 @@ function rebuildRecords() {
   const visible = getVisible();
   const sorted = [...visible].sort((a,b) => b.year - a.year);
   const count = document.getElementById("rpCount");
-  if (count) count.innerHTML = `Showing <strong>${visible.length}</strong> of <strong>${yearRecords.length}</strong> years — click any row to expand`;
+  if (count) count.innerHTML = `Showing <strong>${visible.length}</strong> of <strong>${records.length}</strong> years — click any row to expand`;
   const container = document.getElementById("ybContainer");
   if (container) {
     container.innerHTML = sorted.length === 0
