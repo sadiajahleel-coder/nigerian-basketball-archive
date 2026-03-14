@@ -1,4 +1,5 @@
-export const records = [
+```
+export const yearRecords = [
   // ── 1964 ──────────────────────────────────────────────────────────────
   { id: 1, year: 1964, decade: 1960, type: "milestone", featured: true,
     title: "Nigeria Basketball Founded",
@@ -210,14 +211,6 @@ export const records = [
     source: "" },
 ];
 
-export const typeLabels = {
-  tournament: "Tournament",
-  milestone: "Milestone",
-  player: "Player Profile",
-  nbbf: "NBBF",
-  intl: "International",
-};
-
 export const decades = [
   { label: "All Eras", value: "all" },
   { label: "1960s", value: 1960 },
@@ -229,10 +222,11 @@ export const decades = [
   { label: "2020s", value: 2020 },
 ];
 
-export const filters = [
-  { label: "All", value: "all" },
-  { label: "NBBF Leadership", value: "nbbf" },
-  { label: "Tournaments", value: "tournament" },
-  { label: "International", value: "intl" },
-  { label: "Milestones", value: "milestone" },
-];
+export const categoryLabels = {
+  tournament: "Tournament",
+  intl: "International",
+  milestone: "Milestone",
+  player: "Player",
+  nbbf: "NBBF",
+};
+```
