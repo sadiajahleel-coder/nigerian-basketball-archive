@@ -932,8 +932,6 @@ function render() {
   else if (page === "signup") app.innerHTML = signupPage();
   else if (page === "coaches") app.innerHTML = coachesPage();
   else if (page === "contribute") app.innerHTML = contributePage();
-  else if (page === "coaches") app.innerHTML = coachesPage();
-  else if (page === "contribute") app.innerHTML = contributePage();
   bindEvents();
 }
 
