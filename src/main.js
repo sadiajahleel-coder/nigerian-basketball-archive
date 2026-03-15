@@ -502,6 +502,91 @@ function landingPage() {
         <div class="landing__stat"><span class="landing__stat-num">1964</span><span class="landing__stat-label">Founded</span></div>
       </div>
     </div>
+    <div class="landing__timeline">
+      <div class="landing__timeline-inner">
+        <h2 class="landing__timeline-title">56 Years of History</h2>
+        <p class="landing__timeline-sub">Key moments from the complete archive</p>
+        <div class="timeline">
+          <div class="timeline__item">
+            <div class="timeline__year">1964</div>
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">Nigeria Basketball Founded</div>
+              <div class="timeline__detail">Mr. Abraham Ordia appoints Moses Omiumu Imana as the first National Chairman of Nigeria Basketball.</div>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__year">1965</div>
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">NABBA Officially Inaugurated</div>
+              <div class="timeline__detail">The Nigeria Amateur Basketball Association is formally established in Lagos, September 8th.</div>
+            </div>
+          </div>
+          <div class="timeline__item timeline__item--highlight">
+            <div class="timeline__year">1971</div>
+            <div class="timeline__dot timeline__dot--highlight"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">Coach OBJ Appointed National Coach</div>
+              <div class="timeline__detail">Oliver B. Johnson begins his legendary career as Nigeria's National Basketball Coach — a role he would hold across multiple decades.</div>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__year">1990</div>
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">African Junior Champions</div>
+              <div class="timeline__detail">Nigeria wins the African Junior Championship in Luanda, Angola — the nation's first continental junior title.</div>
+            </div>
+          </div>
+          <div class="timeline__item">
+            <div class="timeline__year">1995</div>
+            <div class="timeline__dot"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">1st NBBF Premier League</div>
+              <div class="timeline__detail">The inaugural 7-Up Premier League launches — a landmark moment for domestic basketball in Nigeria.</div>
+            </div>
+          </div>
+          <div class="timeline__item timeline__item--highlight">
+            <div class="timeline__year">2012</div>
+            <div class="timeline__dot timeline__dot--highlight"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">First Olympic Qualification</div>
+              <div class="timeline__detail">Nigeria's men qualify for the Olympic Games for the first time, competing at London 2012.</div>
+            </div>
+          </div>
+          <div class="timeline__item timeline__item--highlight">
+            <div class="timeline__year">2017</div>
+            <div class="timeline__dot timeline__dot--highlight"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">D'Tigress Win AfroBasket</div>
+              <div class="timeline__detail">Nigeria's women win the AfroBasket Championship in Mali — a defining moment for D'Tigress on the continental stage.</div>
+            </div>
+          </div>
+          <div class="timeline__item timeline__item--highlight">
+            <div class="timeline__year">2019</div>
+            <div class="timeline__dot timeline__dot--highlight"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">D'Tigers Qualify for Tokyo Olympics</div>
+              <div class="timeline__detail">Nigeria's men qualify for the Tokyo 2020 Olympics at the FIBA World Cup in China.</div>
+            </div>
+          </div>
+          <div class="timeline__item timeline__item--highlight">
+            <div class="timeline__year">2020</div>
+            <div class="timeline__dot timeline__dot--highlight"></div>
+            <div class="timeline__content">
+              <div class="timeline__event">D'Tigress Qualify for Tokyo Olympics</div>
+              <div class="timeline__detail">Nigeria's women qualify for the Tokyo 2020 Olympics in Belgrade — both national teams headed to the Games.</div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline__cta">
+          <p>The full archive contains every year from 1964 to 2020 — every board, every coach, every result.</p>
+          <button class="landing__cta" id="timelineCta">Request Access to the Full Archive</button>
+        </div>
+      </div>
+    </div>
+
     <div class="landing__teaser">
       <div class="landing__teaser-inner">
         <h2 class="landing__teaser-title">What the Archive Contains</h2>
@@ -832,6 +917,8 @@ function bindEvents() {
   if (landingCta2) landingCta2.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
   const landingContribute = document.getElementById("landingContribute");
   if (landingContribute) landingContribute.addEventListener("click", () => { page = "contribute"; pushHistory("contribute", {}); render(); window.scrollTo(0,0); });
+  const timelineCta = document.getElementById("timelineCta");
+  if (timelineCta) timelineCta.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
 
   // Contribution form
   const contribForm = document.getElementById("contribForm");
@@ -923,4 +1010,3 @@ function bindEvents() {
 }
 
 render();
-
