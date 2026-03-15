@@ -1,6 +1,6 @@
 import "./style.css";
 import { records, decades, categoryLabels } from "./data/records.js";
-import { editorialNotes, underlyingIssues, nbbfConstitution } from "./pages.js";
+import { editorialNotes, underlyingIssues, nbbfConstitution, pressClippings1989 } from "./pages.js";
 const coaches = [
   {
     name: "Abdulrahman Mohammed.",
@@ -1022,6 +1022,7 @@ function nav() {
         <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
+        <button class="nav__link ${page==="press"?"active":""}" data-nav="press">Press</button>
         <button class="nav__link ${page==="players"?"active":""}" data-nav="players">Players</button>
         <button class="nav__link ${page==="coaches"?"active":""}" data-nav="coaches">Coaches</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
@@ -1693,6 +1694,28 @@ function signupPage() {
 }
 
 
+// ── PRESS ─────────────────────────────────────────────────
+function pressPage() {
+  const articles = pressClippings1989.articles.map(a =>
+    '<div class="press-card">' +
+      '<div class="press-card__head">' +
+        '<div class="press-card__headline">' + a.headline + '</div>' +
+        '<div class="press-card__meta">' + a.source + ' &nbsp;·&nbsp; ' + a.date + '</div>' +
+      '</div>' +
+      '<div class="press-card__body">' + a.body + '</div>' +
+    '</div>'
+  ).join('');
+
+  return nav() +
+  '<div class="signup-page"><div class="signup-page__inner">' +
+  crumb("Press") +
+  '<h1 class="signup-page__title">' + pressClippings1989.title + '</h1>' +
+  '<p class="signup-page__sub">' + pressClippings1989.intro + '</p>' +
+  '<div class="press-list">' + articles + '</div>' +
+  '</div></div>' +
+  footer();
+}
+
 // ── GLOBAL SEARCH ─────────────────────────────────────────
 function searchPage() {
   const q = (window._searchQuery || "").toLowerCase().trim();
@@ -2056,6 +2079,7 @@ function render() {
   else if (page === "constitution") app.innerHTML = constitutionPage();
   else if (page === "about") app.innerHTML = aboutPage();
   else if (page === "signup") app.innerHTML = signupPage();
+  else if (page === "press") app.innerHTML = pressPage();
   else if (page === "search") app.innerHTML = searchPage();
   else if (page === "players") app.innerHTML = playersPage();
   else if (page === "coaches") app.innerHTML = coachesPage();

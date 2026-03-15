@@ -223,3 +223,40 @@ export const nbbfConstitution = {
     }
   ]
 };
+
+export const pressClippings1989 = {
+  title: "Press Clippings — 1989",
+  intro: "These five newspaper articles are the only primary source journalism preserved in the archive. They appeared in Nigerian newspapers in March and April 1989 and were collected by Coach OBJ as contemporaneous evidence of that year's basketball activity.",
+  articles: [
+    {
+      headline: "Easter Six A-Side B\'Ball Session",
+      source: "Daily Times",
+      date: "25 March 1989",
+      body: "It promises a top flight action this morning, and for basketball followers. It should be a big Easter package for them as the Lagos State Basketball Association organizes a six-a-side tournament at the Rowe Park Sports Centre in Yaba. The tournament, the second in its series is being put together through the sponsorship of Lawyer, Toyin Keshinro. Alhaji Akinwale said skillful players have been picked for the exercise, adding that entry for the competition is \'free\' while handsome cash and material prizes await winners in the first three positions."
+    },
+    {
+      headline: "Elephant Girls Clinch Dan Musa\'s Cup — Beat Benue Girls",
+      source: "Sunday Herald",
+      date: "9 April 1989",
+      body: "First Bank Basketball Club of Lagos defeated Benue Braves of Benue State 83–64 to lift the maiden Ibrahim Dan Musa Sadiku Inter-State Female Championship, which ended at the Ilorin Stadium Complex yesterday."
+    },
+    {
+      headline: "First Bank Coach Eyes African Cup",
+      source: "The Herald",
+      date: "10 April 1989",
+      body: "First Bank women basketball coach, Agboola Pinheiro, no doubt is the most valuable coach at the recently concluded Dan Musa Inter-State championship having led the most formidable team. He has his eyes on two things. First, Pinheiro would want his team to win the African Championship — which venue is yet to be decided by the continental organizing body — and then he hopes to retire to the glamour world of business."
+    },
+    {
+      headline: "NABBA\'s Plan for Barcelona Olympics",
+      source: "The Democrat",
+      date: "19 April 1989",
+      body: "The Nigerian Amateur Basketball Association (NABBA) will soon begin a four year programme to prepare Nigeria\'s team towards the 1992 Barcelona Olympics. Mr. Anani, the acting chairman of the association, said that the long term programme is to enable Nigeria gain a shot in the 1992 games since FIBA, the world governing body for basketball, has now given Africa four slots in the Olympics."
+    },
+    {
+      headline: "NABBA to Smile to the Bank",
+      source: "The Punch",
+      date: "12 April 1989",
+      body: "States that did not participate in the just concluded Dan Musa Inter-State Women Basketball Championship have till June to pay the N1,000 fine or face more severe punishment. According to the acting chairman of NABBA, Mr. Godwin Anani, all the offending states should be able to raise the N1,000 within three months and send it to Lagos before the end of June. \'States who fail to do so will be prevented from participating in any NABBA organized competitions this year. In the past, they complained that there were no competitions or they were too few. Now, states officials either at the sports council or ministry are too lazy to give the ladies the needed exposure.\'"
+    }
+  ]
+};
