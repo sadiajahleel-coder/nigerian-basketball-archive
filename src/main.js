@@ -154,6 +154,43 @@ function homePage() {
     </div>
 
     <div class="section-rule">
+      <span class="section-rule__title">The Archive in Numbers</span>
+      <div class="section-rule__line"></div>
+    </div>
+    <div class="stats-grid">
+      <div class="stats-card stats-card--large">
+        <div class="stats-card__num">56</div>
+        <div class="stats-card__label">Years Documented</div>
+        <div class="stats-card__sub">1964 — 2020</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card__num">${records.length}</div>
+        <div class="stats-card__label">Year Records</div>
+        <div class="stats-card__sub">Complete annual entries</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card__num">${totalEvents()}</div>
+        <div class="stats-card__label">Events Recorded</div>
+        <div class="stats-card__sub">Tournaments, milestones & more</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card__num">${records.filter(r => r.events && r.events.some(e => e.category === "intl")).length}</div>
+        <div class="stats-card__label">Years of International Play</div>
+        <div class="stats-card__sub">AfroBasket, Olympics, FIBA</div>
+      </div>
+      <div class="stats-card">
+        <div class="stats-card__num">${records.filter(r => r.events && r.events.some(e => e.category === "tournament")).length}</div>
+        <div class="stats-card__label">Years with Tournaments</div>
+        <div class="stats-card__sub">National & state competitions</div>
+      </div>
+      <div class="stats-card stats-card--green">
+        <div class="stats-card__num">18</div>
+        <div class="stats-card__label">NBBF Constitution Articles</div>
+        <div class="stats-card__sub">Governing the federation</div>
+      </div>
+    </div>
+
+    <div class="section-rule">
       <span class="section-rule__title">Browse by Category</span>
       <div class="section-rule__line"></div>
     </div>
