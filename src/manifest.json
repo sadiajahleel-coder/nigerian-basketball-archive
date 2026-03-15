@@ -1,0 +1,17 @@
+{
+  "name": "Nigeria Basketball Archive",
+  "short_name": "NB Archive",
+  "description": "56 years of Nigerian basketball history — 1964 to 2020",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a2218",
+  "theme_color": "#0a2218",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
