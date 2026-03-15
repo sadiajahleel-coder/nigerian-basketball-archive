@@ -85,6 +85,7 @@ function nav() {
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
+        <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
     </div>
@@ -695,6 +696,109 @@ function contributePage() {
   ${footer()}`;
 }
 
+// ── CONTRIBUTE ───────────────────────────────────────────
+function contributePage() {
+  return `
+  ${nav()}
+  <div class="signup-page">
+    <div class="signup-page__inner">
+      ${crumb("Contribute")}
+      <h1 class="signup-page__title">Contribute to the Archive</h1>
+      <p class="signup-page__sub">This archive is a living document. If you have missing records, corrections, photographs, newspaper clippings, or a personal story from Nigerian basketball, we want to hear from you. Every contribution is reviewed and credited.</p>
+
+      <div class="signup-form-wrap">
+        <form class="signup-form" id="contributeForm" novalidate>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-type">Type of Contribution <span class="sf-required">*</span></label>
+            <select class="sf-input sf-select" id="cf-type" required>
+              <option value="">— Select contribution type —</option>
+              <option value="Missing Record">Missing Record — fill a gap in the archive</option>
+              <option value="Correction">Correction — fix an error in existing records</option>
+              <option value="Photo / Document">Photo / Document — newspaper clipping, match photo, official document</option>
+              <option value="Personal Testimony">Personal Testimony — your own story in Nigerian basketball</option>
+            </select>
+            <span class="sf-error" id="cerr-type">Please select a contribution type.</span>
+          </div>
+
+          <div class="sf-group" id="cf-year-group">
+            <label class="sf-label" for="cf-year">Year (if applicable)</label>
+            <input class="sf-input" id="cf-year" type="number" placeholder="e.g. 1987" min="1964" max="2020"/>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-details">Details <span class="sf-required">*</span></label>
+            <textarea class="sf-input sf-textarea" id="cf-details" rows="6" placeholder="Describe your contribution in as much detail as possible. For missing records include names, dates, results. For corrections describe what is wrong and what the correct information is. For personal testimony write your story." required></textarea>
+            <span class="sf-error" id="cerr-details">Please provide details about your contribution.</span>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-file">Photo / Document Link (optional)</label>
+            <input class="sf-input" id="cf-file" type="url" placeholder="Link to Google Drive, Dropbox or any file sharing link"/>
+            <p class="sf-hint">If you have photos or documents, upload them to Google Drive, set sharing to "Anyone with the link", and paste the link here.</p>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-name">Your Name <span class="sf-required">*</span></label>
+            <input class="sf-input" id="cf-name" type="text" placeholder="Full name" required/>
+            <span class="sf-error" id="cerr-name">Please enter your name.</span>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-email">Your Email <span class="sf-required">*</span></label>
+            <input class="sf-input" id="cf-email" type="email" placeholder="So we can follow up with you" required/>
+            <span class="sf-error" id="cerr-email">Please enter a valid email address.</span>
+          </div>
+
+          <div class="sf-submit-row">
+            <button class="sf-submit" type="submit" id="cf-submit-btn">
+              <span id="cf-btn-text">Submit Contribution</span>
+              <span id="cf-btn-loading" style="display:none">Submitting…</span>
+            </button>
+          </div>
+
+          <div class="sf-success" id="cf-success" style="display:none">
+            <div class="sf-success__icon">✓</div>
+            <h3 class="sf-success__title">Contribution Received</h3>
+            <p class="sf-success__msg">Thank you for contributing to the Nigeria Basketball Archive. Your submission has been recorded and will be reviewed. You will be credited when your contribution is added to the archive.</p>
+            <button class="sf-success__back" data-nav="records">Back to Records</button>
+          </div>
+
+          <div class="sf-error-general" id="cf-error-general" style="display:none">
+            Something went wrong. Please try again.
+          </div>
+        </form>
+
+        <div class="signup-info">
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">Why Contribute?</h3>
+            <ul class="signup-info__list">
+              <li>Help complete 56 years of Nigerian basketball history</li>
+              <li>Your name will be credited in the archive</li>
+              <li>Preserve records before they are lost</li>
+              <li>Connect your story to the official record</li>
+            </ul>
+          </div>
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">What We Need Most</h3>
+            <ul class="signup-info__list">
+              <li>Records from 1964–1979 (early years)</li>
+              <li>Newspaper clippings and match photos</li>
+              <li>State-level tournament results</li>
+              <li>Personal stories from players and coaches</li>
+            </ul>
+          </div>
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">Review Process</h3>
+            <p class="signup-info__text">All contributions are reviewed by the archive team before being added. We may follow up with you for more detail. Contributors are always credited by name.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  ${footer()}`;
+}
+
 // ── RENDER ───────────────────────────────────────────────
 function render() {
   const app = document.getElementById("app");
@@ -706,6 +810,7 @@ function render() {
   else if (page === "constitution") app.innerHTML = constitutionPage();
   else if (page === "about") app.innerHTML = aboutPage();
   else if (page === "signup") app.innerHTML = signupPage();
+  else if (page === "contribute") app.innerHTML = contributePage();
   else if (page === "contribute") app.innerHTML = contributePage();
   bindEvents();
 }

@@ -287,6 +287,8 @@ body { font-family: var(--font-body); background: var(--white); color: var(--ink
 .sf-success__back:hover { background: var(--green-mid); }
 .sf-textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
 .sf-hint { font-size: 11.5px; color: var(--ink-light); margin-top: 5px; line-height: 1.5; }
+.sf-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+.sf-hint { font-size: 11.5px; color: var(--ink-light); margin-top: 5px; line-height: 1.5; }
 .sf-error-general { display: none; margin-top: 1rem; padding: 12px 14px; background: #fff0f0; border: 1px solid #fecdd3; border-radius: 6px; font-size: 13px; color: #9d1b1b; }
 
 /* Signup info sidebar */
