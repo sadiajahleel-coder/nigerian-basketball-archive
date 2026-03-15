@@ -767,7 +767,7 @@ function coachesPage() {
       '<div class="coach-result">' + outcomeIcon(r.outcome) +
       '<span class="coach-result__year">' + r.year + '</span>' +
       '<span class="coach-result__title">' + r.title + '</span></div>'
-    ).join("") : '<div class="coach-result__empty">No international results recorded for this coach tenure.</div>';
+    ).join("") : '<div class="coach-result__empty">No international results recorded for this coach.</div>';
 
     const medals = (c.wins ? '<span class="coach-medal coach-medal--gold">🥇 ' + c.wins + '</span>' : '') +
                    (c.silver ? '<span class="coach-medal coach-medal--silver">🥈 ' + c.silver + '</span>' : '') +
@@ -1128,4 +1128,3 @@ function bindEvents() {
 }
 
 render();
-
