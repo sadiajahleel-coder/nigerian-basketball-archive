@@ -951,7 +951,7 @@ function bindEvents() {
       let valid = true;
       const showErr = (id, show) => { document.getElementById(id).style.display = show ? "block" : "none"; };
       if (!name) { showErr("cerr-name", true); valid = false; } else showErr("cerr-name", false);
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr("cerr-email", true); valid = false; } else showErr("cerr-email", false);
+      if (!email || email.indexOf("@") < 1) { showErr("cerr-email", true); valid = false; } else showErr("cerr-email", false);
       if (!type) { showErr("cerr-type", true); valid = false; } else showErr("cerr-type", false);
       if (!details) { showErr("cerr-details", true); valid = false; } else showErr("cerr-details", false);
       if (!valid) return;
@@ -993,7 +993,7 @@ function bindEvents() {
       let valid = true;
       const showErr = (id, show) => { document.getElementById(id).style.display = show ? "block" : "none"; };
       if (!name) { showErr("err-name", true); valid = false; } else showErr("err-name", false);
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr("err-email", true); valid = false; } else showErr("err-email", false);
+      if (!email || email.indexOf("@") < 1) { showErr("err-email", true); valid = false; } else showErr("err-email", false);
       if (!org) { showErr("err-org", true); valid = false; } else showErr("err-org", false);
       if (!role) { showErr("err-role", true); valid = false; } else showErr("err-role", false);
       if (!valid) return;
