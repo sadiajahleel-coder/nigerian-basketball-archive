@@ -886,10 +886,7 @@ function bindEvents() {
     if (matches.length === 0) { preview.style.display = "none"; return; }
     results.innerHTML = matches.map(yr => {
       const ev = yr.events.find(e => (e.title + e.detail).toLowerCase().includes(q.toLowerCase()));
-      return `<div class="sp-row">
-        <span class="sp-year">\${yr.year}</span>
-        <span class="sp-text">\${ev ? ev.title : "Board & Administration record"}</span>
-      </div>\`;
+      return "<div class='sp-row'><span class='sp-year'>" + yr.year + "</span><span class='sp-text'>" + (ev ? ev.title : "Board & Administration record") + "</span></div>";
     }).join("");
     preview.style.display = "block";
   }
@@ -1030,4 +1027,3 @@ function bindEvents() {
 }
 
 render();
-
