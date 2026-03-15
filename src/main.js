@@ -4,6 +4,20 @@ import { editorialNotes, underlyingIssues, nbbfConstitution } from "./pages.js";
 
 let page = "home";
 let state = { decade: "all", search: "" };
+let hasAccess = false;
+
+function checkAccess() {
+  try {
+    hasAccess = sessionStorage.getItem("nba_access") === "granted";
+  } catch(e) {
+    hasAccess = false;
+  }
+}
+function grantAccess() {
+  try { sessionStorage.setItem("nba_access", "granted"); } catch(e) {}
+  hasAccess = true;
+}
+checkAccess();
 
 // Browser history support
 function pushHistory(p, s) {
@@ -32,7 +46,16 @@ function totalEvents() {
 function decadeCount(val) {
   return records.filter(yr => yr.decade === val).length;
 }
+const protectedPages = ["records", "analysis", "constitution", "about"];
+
 function navigate(p, s = {}) {
+  if (protectedPages.includes(p) && !hasAccess) {
+    page = "signup";
+    pushHistory("signup", {});
+    window.scrollTo(0, 0);
+    render();
+    return;
+  }
   page = p;
   if (s.decade !== undefined) state.decade = s.decade;
   if (s.search !== undefined) state.search = s.search;
@@ -399,6 +422,65 @@ function aboutPage() {
   ${footer()}`;
 }
 
+// ── LANDING (no access) ──────────────────────────────────
+function landingPage() {
+  return `
+  <div class="landing">
+    <div class="landing__hero">
+      <div class="landing__hero-inner">
+        <p class="landing__eyebrow">NBBF — Nigeria Basketball Federation · Est. 1964</p>
+        <h1 class="landing__title">Nigeria Basketball Archive</h1>
+        <p class="landing__subtitle">56 Years of Records. <em>Documented.</em></p>
+        <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by Coach OBJ — Oliver B. Johnson.</p>
+        <button class="landing__cta" id="landingCta">Request Access</button>
+      </div>
+      <div class="landing__stats">
+        <div class="landing__stat"><span class="landing__stat-num">56</span><span class="landing__stat-label">Years Documented</span></div>
+        <div class="landing__stat"><span class="landing__stat-num">57</span><span class="landing__stat-label">Year Records</span></div>
+        <div class="landing__stat"><span class="landing__stat-num">340+</span><span class="landing__stat-label">Events Recorded</span></div>
+        <div class="landing__stat"><span class="landing__stat-num">1964</span><span class="landing__stat-label">Founded</span></div>
+      </div>
+    </div>
+    <div class="landing__teaser">
+      <div class="landing__teaser-inner">
+        <h2 class="landing__teaser-title">What the Archive Contains</h2>
+        <div class="landing__teaser-grid">
+          <div class="landing__teaser-item">
+            <div class="landing__teaser-icon">👤</div>
+            <div class="landing__teaser-label">NBBF Leadership</div>
+            <div class="landing__teaser-desc">Every chairman, president, secretary and board member — year by year from 1964.</div>
+          </div>
+          <div class="landing__teaser-item">
+            <div class="landing__teaser-icon">🏆</div>
+            <div class="landing__teaser-label">Tournaments</div>
+            <div class="landing__teaser-desc">National League, Sports Festival, Premier League and all Cup competitions.</div>
+          </div>
+          <div class="landing__teaser-item">
+            <div class="landing__teaser-icon">🌍</div>
+            <div class="landing__teaser-label">International</div>
+            <div class="landing__teaser-desc">AfroBasket, Olympics, Commonwealth Games and all FIBA events.</div>
+          </div>
+          <div class="landing__teaser-item">
+            <div class="landing__teaser-icon">📋</div>
+            <div class="landing__teaser-label">Analysis</div>
+            <div class="landing__teaser-desc">Editorial notes and a frank account of the politics that shaped Nigerian basketball.</div>
+          </div>
+        </div>
+        <div class="landing__teaser-cta">
+          <p>Access is free. Submit your details to get in.</p>
+          <button class="landing__cta landing__cta--dark" id="landingCta2">Request Access Now</button>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__brand">Nigeria Basketball Archive</div>
+        <div class="footer__text">Compiled by <strong>Coach OBJ</strong> — Oliver B. Johnson · 1964–2020 · NBBF<br>Edited &amp; built by <strong>Halima Abdul</strong></div>
+      </div>
+    </footer>
+  </div>`;
+}
+
 // ── SIGNUP ───────────────────────────────────────────────
 const FORM_URL = "https://script.google.com/macros/s/AKfycbzoFdbSCNcPhGTOwz8m8OznCFpbgEWLjef2GnkfWpJ8I4tZPsrewjFNpHTGFeFClbgf/exec";
 
@@ -489,7 +571,9 @@ function signupPage() {
 // ── RENDER ───────────────────────────────────────────────
 function render() {
   const app = document.getElementById("app");
-  if (page === "home") app.innerHTML = homePage();
+  if (!hasAccess && page !== "signup") {
+    app.innerHTML = landingPage();
+  } else if (page === "home") app.innerHTML = homePage();
   else if (page === "records") app.innerHTML = recordsPage();
   else if (page === "analysis") app.innerHTML = analysisPage();
   else if (page === "constitution") app.innerHTML = constitutionPage();
@@ -553,6 +637,12 @@ function bindEvents() {
   });
   bindToggles();
 
+  // Landing page CTAs
+  const landingCta = document.getElementById("landingCta");
+  const landingCta2 = document.getElementById("landingCta2");
+  if (landingCta) landingCta.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
+  if (landingCta2) landingCta2.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
+
   // Signup form
   const form = document.getElementById("signupForm");
   if (form) {
@@ -585,8 +675,10 @@ function bindEvents() {
           body: JSON.stringify({ name, email, organisation: org, role }),
           mode: "no-cors"
         });
+        grantAccess();
         form.style.display = "none";
         document.getElementById("sf-success").style.display = "flex";
+        setTimeout(() => { navigate("home"); }, 2500);
       } catch (err) {
         document.getElementById("sf-error-general").style.display = "block";
         document.getElementById("sf-btn-text").style.display = "inline";
