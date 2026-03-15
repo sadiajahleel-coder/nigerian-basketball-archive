@@ -46,7 +46,7 @@ function totalEvents() {
 function decadeCount(val) {
   return records.filter(yr => yr.decade === val).length;
 }
-const protectedPages = ["records", "analysis", "constitution", "about"];
+const protectedPages = ["records", "analysis", "constitution", "about", "contribute"];
 
 function navigate(p, s = {}) {
   if (protectedPages.includes(p) && !hasAccess) {
@@ -84,6 +84,7 @@ function nav() {
         <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
+        <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
     </div>
@@ -484,7 +485,8 @@ function landingPage() {
 }
 
 // ── SIGNUP ───────────────────────────────────────────────
-const FORM_URL = "https://script.google.com/macros/s/AKfycbzoFdbSCNcPhGTOwz8m8OznCFpbgEWLjef2GnkfWpJ8I4tZPsrewjFNpHTGFeFClbgf/exec";
+const FORM_URL = "https://script.google.com/macros/s/AKfycbxDj3PDbK6nLQkK0HnoTaFv8H7cVSqMmwe16eb3nY3UoKj8BJq9A2mR-cz2z73DHTNd/exec";
+const CONTRIB_URL = "https://script.google.com/macros/s/AKfycbxDj3PDbK6nLQkK0HnoTaFv8H7cVSqMmwe16eb3nY3UoKj8BJq9A2mR-cz2z73DHTNd/exec";
 
 function signupPage() {
   return `
@@ -574,6 +576,125 @@ function signupPage() {
   ${footer()}`;
 }
 
+
+// ── CONTRIBUTE ────────────────────────────────────────────
+function contributePage() {
+  return `
+  ${nav()}
+  <div class="signup-page">
+    <div class="signup-page__inner">
+      ${crumb("Contribute")}
+      <h1 class="signup-page__title">Contribute to the Archive</h1>
+      <p class="signup-page__sub">This archive is a living document. If you have records, photographs, corrections or a personal story from Nigerian basketball history, we want to hear from you. All contributions are reviewed by the editorial team before being added.</p>
+
+      <div class="signup-form-wrap">
+        <form class="signup-form" id="contribForm" novalidate>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-name">Your Name <span class="sf-required">*</span></label>
+            <input class="sf-input" id="cf-name" type="text" placeholder="e.g. Emeka Okafor" required/>
+            <span class="sf-error" id="cerr-name">Please enter your name.</span>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-email">Email Address <span class="sf-required">*</span></label>
+            <input class="sf-input" id="cf-email" type="email" placeholder="e.g. emeka@example.com" required/>
+            <span class="sf-error" id="cerr-email">Please enter a valid email address.</span>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-type">Type of Contribution <span class="sf-required">*</span></label>
+            <select class="sf-input sf-select" id="cf-type" required>
+              <option value="">— Select contribution type —</option>
+              <option value="Missing Record">Missing Record — fill a gap in the archive</option>
+              <option value="Correction">Correction — fix an error in existing records</option>
+              <option value="Photo / Document">Photo or Document — newspaper clipping, match photo, official document</option>
+              <option value="Personal Testimony">Personal Testimony — your own story in Nigerian basketball</option>
+            </select>
+            <span class="sf-error" id="cerr-type">Please select a contribution type.</span>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-year">Year (if applicable)</label>
+            <input class="sf-input" id="cf-year" type="text" placeholder="e.g. 1995 or 1990–1995"/>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-details">Details <span class="sf-required">*</span></label>
+            <textarea class="sf-input sf-textarea" id="cf-details" rows="6" placeholder="Describe your contribution in as much detail as possible. For missing records, include names, dates, results and sources where available. For corrections, describe what is wrong and what the correct information is." required></textarea>
+            <span class="sf-error" id="cerr-details">Please provide details of your contribution.</span>
+          </div>
+
+          <div class="sf-group">
+            <label class="sf-label" for="cf-link">Photo / File Link (if applicable)</label>
+            <input class="sf-input" id="cf-link" type="url" placeholder="Google Drive, Dropbox or any public link to your file"/>
+            <p class="sf-hint">Upload your photo or document to Google Drive, set sharing to "Anyone with the link", then paste the link here.</p>
+          </div>
+
+          <div class="sf-submit-row">
+            <button class="sf-submit" type="submit" id="cf-submit-btn">
+              <span id="cf-btn-text">Submit Contribution</span>
+              <span id="cf-btn-loading" style="display:none">Submitting…</span>
+            </button>
+          </div>
+
+          <div class="sf-success" id="cf-success" style="display:none">
+            <div class="sf-success__icon">✓</div>
+            <h3 class="sf-success__title">Contribution Received</h3>
+            <p class="sf-success__msg">Thank you for contributing to the Nigeria Basketball Archive. Your submission has been recorded and will be reviewed by the editorial team. You will be acknowledged in the archive if your contribution is included.</p>
+            <button class="sf-success__back" data-nav="records">Back to Records</button>
+          </div>
+
+          <div class="sf-error-general" id="cf-error-general" style="display:none">
+            Something went wrong. Please try again.
+          </div>
+
+        </form>
+
+        <div class="signup-info">
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">What we need</h3>
+            <ul class="signup-info__list">
+              <li>Board compositions for years with gaps</li>
+              <li>Tournament results not in the archive</li>
+              <li>Newspaper clippings or match programmes</li>
+              <li>Team photographs from any era</li>
+              <li>Official NBBF documents</li>
+              <li>Personal accounts and testimonies</li>
+            </ul>
+          </div>
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">Years with gaps</h3>
+            <ul class="signup-info__list">
+              <li>1970 — no events recorded</li>
+              <li>1972 — no events recorded</li>
+              <li>1974 — no events recorded</li>
+              <li>1976 — no events recorded</li>
+              <li>1978 — no events recorded</li>
+              <li>1984 — no events recorded</li>
+              <li>1985 — no events recorded</li>
+              <li>1987 — no events recorded</li>
+              <li>1993 — no events recorded</li>
+              <li>2003 — no events recorded</li>
+              <li>2015 — no events recorded</li>
+              <li>2018 — no events recorded</li>
+            </ul>
+          </div>
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">Acknowledgement</h3>
+            <p class="signup-info__text">All contributors whose submissions are included in the archive will be acknowledged by name. This archive exists because of people who care about Nigerian basketball history.</p>
+          </div>
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">Edited &amp; Built by</h3>
+            <p class="signup-info__text"><strong>Halima Abdul</strong> — digitised and built this archive for public access, making 56 years of Nigerian basketball history available online for the first time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  ${footer()}`;
+}
+
 // ── RENDER ───────────────────────────────────────────────
 function render() {
   const app = document.getElementById("app");
@@ -585,6 +706,7 @@ function render() {
   else if (page === "constitution") app.innerHTML = constitutionPage();
   else if (page === "about") app.innerHTML = aboutPage();
   else if (page === "signup") app.innerHTML = signupPage();
+  else if (page === "contribute") app.innerHTML = contributePage();
   bindEvents();
 }
 
@@ -648,6 +770,49 @@ function bindEvents() {
   const landingCta2 = document.getElementById("landingCta2");
   if (landingCta) landingCta.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
   if (landingCta2) landingCta2.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
+
+  // Contribution form
+  const contribForm = document.getElementById("contribForm");
+  if (contribForm) {
+    contribForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("cf-name").value.trim();
+      const email = document.getElementById("cf-email").value.trim();
+      const type = document.getElementById("cf-type").value;
+      const year = document.getElementById("cf-year").value.trim();
+      const details = document.getElementById("cf-details").value.trim();
+      const fileLink = document.getElementById("cf-link").value.trim();
+
+      let valid = true;
+      const showErr = (id, show) => { document.getElementById(id).style.display = show ? "block" : "none"; };
+      if (!name) { showErr("cerr-name", true); valid = false; } else showErr("cerr-name", false);
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr("cerr-email", true); valid = false; } else showErr("cerr-email", false);
+      if (!type) { showErr("cerr-type", true); valid = false; } else showErr("cerr-type", false);
+      if (!details) { showErr("cerr-details", true); valid = false; } else showErr("cerr-details", false);
+      if (!valid) return;
+
+      const btn = document.getElementById("cf-submit-btn");
+      document.getElementById("cf-btn-text").style.display = "none";
+      document.getElementById("cf-btn-loading").style.display = "inline";
+      btn.disabled = true;
+
+      try {
+        await fetch(CONTRIB_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ formType: "contribution", contributorName: name, email, type, year, details, fileLink }),
+          mode: "no-cors"
+        });
+        contribForm.style.display = "none";
+        document.getElementById("cf-success").style.display = "flex";
+      } catch (err) {
+        document.getElementById("cf-error-general").style.display = "block";
+        document.getElementById("cf-btn-text").style.display = "inline";
+        document.getElementById("cf-btn-loading").style.display = "none";
+        btn.disabled = false;
+      }
+    });
+  }
 
   // Signup form
   const form = document.getElementById("signupForm");
