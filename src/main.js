@@ -128,6 +128,14 @@ function homePage() {
           <input class="hero__search-input" id="heroSearch" type="search" placeholder="Search a year, name, team or event…" autocomplete="off"/>
           <button class="hero__search-btn" id="heroSearchBtn">Search</button>
         </div>
+        <div class="search-preview" id="searchPreview" style="display:none">
+          <div class="search-preview__results" id="searchPreviewResults"></div>
+          <div class="search-preview__lock">
+            <div class="search-preview__lock-icon">🔒</div>
+            <div class="search-preview__lock-text">Sign up to read full results</div>
+            <button class="search-preview__lock-btn" id="searchPreviewCta">Request Access</button>
+          </div>
+        </div>
       </div>
       <div class="hero__right">
         <p class="hero__stats-title">Nigeria Basketball Federation (NBBF)</p>
@@ -865,10 +873,49 @@ function bindEvents() {
   });
   const heroSearch = document.getElementById("heroSearch");
   const heroBtn = document.getElementById("heroSearchBtn");
-  if (heroBtn && heroSearch) {
-    heroBtn.addEventListener("click", () => { const q = heroSearch.value.trim(); if (q) navigate("records", { search: q }); else navigate("records"); });
-    heroSearch.addEventListener("keydown", e => { if (e.key === "Enter") { const q = heroSearch.value.trim(); if (q) navigate("records", { search: q }); else navigate("records"); } });
+
+  function runSearchPreview(q) {
+    const preview = document.getElementById("searchPreview");
+    const results = document.getElementById("searchPreviewResults");
+    if (!preview || !results) return;
+    if (!q) { preview.style.display = "none"; return; }
+    const matches = records.filter(yr => {
+      const txt = (yr.administration.board + yr.administration.coaches + yr.events.map(e => e.title + e.detail).join(" ")).toLowerCase();
+      return txt.includes(q.toLowerCase()) || String(yr.year).includes(q);
+    }).slice(0, 4);
+    if (matches.length === 0) { preview.style.display = "none"; return; }
+    results.innerHTML = matches.map(yr => {
+      const ev = yr.events.find(e => (e.title + e.detail).toLowerCase().includes(q.toLowerCase()));
+      return \`<div class="sp-row">
+        <span class="sp-year">\${yr.year}</span>
+        <span class="sp-text">\${ev ? ev.title : "Board & Administration record"}</span>
+      </div>\`;
+    }).join("");
+    preview.style.display = "block";
   }
+
+  if (heroBtn && heroSearch) {
+    heroBtn.addEventListener("click", () => {
+      const q = heroSearch.value.trim();
+      if (!hasAccess) { runSearchPreview(q); }
+      else if (q) navigate("records", { search: q });
+      else navigate("records");
+    });
+    heroSearch.addEventListener("input", e => {
+      if (!hasAccess) runSearchPreview(e.target.value.trim());
+    });
+    heroSearch.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        const q = heroSearch.value.trim();
+        if (!hasAccess) { runSearchPreview(q); }
+        else if (q) navigate("records", { search: q });
+        else navigate("records");
+      }
+      if (e.key === "Escape") { const p = document.getElementById("searchPreview"); if (p) p.style.display = "none"; }
+    });
+  }
+  const searchPreviewCta = document.getElementById("searchPreviewCta");
+  if (searchPreviewCta) searchPreviewCta.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
   const rpSearch = document.getElementById("rpSearch");
   if (rpSearch) {
     rpSearch.addEventListener("input", e => { state.search = e.target.value; rebuildRecords(); });
