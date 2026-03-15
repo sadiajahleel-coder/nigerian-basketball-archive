@@ -1819,33 +1819,27 @@ function playersPage() {
     const first = Math.min(...p.years);
     const last = Math.max(...p.years);
     const period = first === last ? String(first) : first + "–" + last;
-    return \`<div class="player-card\${p.highlight ? " player-card--notable" : ""}">
-      <div class="player-card__head">
-        <div class="player-card__avatar">\${p.name.charAt(0)}</div>
-        <div class="player-card__info">
-          <div class="player-card__name">\${p.name}\${p.highlight ? " ⭐" : ""}</div>
-          <div class="player-card__nick">\${p.nickname} · \${period}</div>
-        </div>
-      </div>
-      <div class="player-card__note">\${p.note}</div>
-    </div>\`;
+    return '<div class="player-card' + (p.highlight ? " player-card--notable" : "") + '">' +
+      '<div class="player-card__head">' +
+        '<div class="player-card__avatar">' + p.name.charAt(0) + '</div>' +
+        '<div class="player-card__info">' +
+          '<div class="player-card__name">' + p.name + (p.highlight ? " ⭐" : "") + '</div>' +
+          '<div class="player-card__nick">' + p.nickname + ' · ' + period + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="player-card__note">' + p.note + '</div>' +
+    '</div>';
   }
 
-  return nav() + \`
-  <div class="signup-page">
-    <div class="signup-page__inner">
-      \${crumb("Players")}
-      <h1 class="signup-page__title">Notable Players</h1>
-      <p class="signup-page__sub">Players who represented Nigeria, shaped the game, or left a lasting mark on Nigerian basketball from 1964 to 2020. ⭐ marks the most celebrated figures.</p>
-      <div class="players-grid">
-        \${notable.map(playerCard).join("")}
-      </div>
-      <div class="players-note">
-        <strong>Help us grow this page.</strong> If you know of a player who should be included, use the
-        <button class="inline-link" data-nav="contribute">Contribute</button> page to send us their details.
-      </div>
-    </div>
-  </div>\` + footer();
+  return nav() +
+  '<div class="signup-page"><div class="signup-page__inner">' +
+  crumb("Players") +
+  '<h1 class="signup-page__title">Notable Players</h1>' +
+  '<p class="signup-page__sub">Players who represented Nigeria, shaped the game, or left a lasting mark on Nigerian basketball from 1964 to 2020. ⭐ marks the most celebrated figures.</p>' +
+  '<div class="players-grid">' + notable.map(playerCard).join("") + '</div>' +
+  '<div class="players-note"><strong>Help us grow this page.</strong> If you know of a player who should be included, use the <button class="inline-link" data-nav="contribute">Contribute</button> page to send us their details.</div>' +
+  '</div></div>' +
+  footer();
 }
 
 // ── COACHES ──────────────────────────────────────────────
