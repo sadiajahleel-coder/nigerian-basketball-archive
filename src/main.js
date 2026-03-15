@@ -488,7 +488,7 @@ function landingPage() {
         <p class="landing__eyebrow">NBBF — Nigeria Basketball Federation · Est. 1964</p>
         <h1 class="landing__title">Nigeria Basketball Archive</h1>
         <p class="landing__subtitle">56 Years of Records. <em>Documented.</em></p>
-        <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Coach OBJ — Oliver B. Johnson</a>. Edited and built by <a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link credit-link--light">Halima Abdul</a>.</p>
+        <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Coach OBJ — Oliver B. Johnson</a>.</p>
         <div class="landing__cta-group">
           <button class="landing__cta" id="landingCta">Request Access</button>
           <button class="landing__cta landing__cta--outline" id="landingContribute">Contribute to the Archive</button>
