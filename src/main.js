@@ -1027,3 +1027,4 @@ function bindEvents() {
 }
 
 render();
+
