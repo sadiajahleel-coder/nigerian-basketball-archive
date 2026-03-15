@@ -238,3 +238,15 @@ body { font-family: var(--font-body); background: var(--white); color: var(--ink
   .decade-grid { grid-template-columns: repeat(3, 1fr); }
   .feature-strip { grid-template-columns: 1fr; }
 }
+
+/* ── BOARD LIST ───────────────────────────────────────── */
+.board-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.board-list__item { font-size: 13px; line-height: 1.55; display: flex; gap: 6px; align-items: baseline; padding: 5px 0; border-bottom: 1px solid var(--border); }
+.board-list__item:last-child { border-bottom: none; }
+.board-list__label { font-weight: 600; color: var(--ink); white-space: nowrap; flex-shrink: 0; min-width: 140px; }
+.board-list__val { color: var(--ink-mid); }
+
+@media (max-width: 480px) {
+  .board-list__item { flex-direction: column; gap: 2px; }
+  .board-list__label { min-width: unset; }
+}

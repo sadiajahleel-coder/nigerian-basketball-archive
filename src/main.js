@@ -182,6 +182,24 @@ function badge(cat) {
   return `<span class="badge badge--${cat}">${categoryLabels[cat]||cat}</span>`;
 }
 
+function formatBoardText(text) {
+  if (!text) return "";
+  // Split on patterns like "Label: value." or "Label: value then value."
+  // Matches things like "President:", "Zonal Representatives:", etc.
+  const lines = text.split(/(?=[A-Z][A-Za-z\s\/\-&()]+:\s)/);
+  const items = lines.map(line => line.trim()).filter(Boolean);
+  if (items.length <= 1) {
+    return `<p class="yb__field-value">${text}</p>`;
+  }
+  return `<ul class="board-list">${items.map(item => {
+    const colonIdx = item.indexOf(":");
+    if (colonIdx === -1) return `<li class="board-list__item"><span class="board-list__val">${item}</span></li>`;
+    const label = item.slice(0, colonIdx).trim();
+    const val = item.slice(colonIdx + 1).trim().replace(/\.\s*$/, "");
+    return `<li class="board-list__item"><span class="board-list__label">${label}:</span> <span class="board-list__val">${val}</span></li>`;
+  }).join("")}</ul>`;
+}
+
 function yearBlock(yr) {
   const hasEv = yr.events && yr.events.length > 0;
   const hasNotes = yr.administration.notes && yr.administration.notes.trim();
@@ -204,8 +222,8 @@ function yearBlock(yr) {
     <div class="yb__body">
       <div class="yb__section">
         <div class="yb__section-label">Administration</div>
-        ${yr.administration.board ? `<div class="yb__field"><span class="yb__field-label">Board &amp; Leadership</span><p class="yb__field-value">${yr.administration.board}</p></div>` : ""}
-        ${yr.administration.coaches ? `<div class="yb__field"><span class="yb__field-label">Coaches &amp; Staff</span><p class="yb__field-value">${yr.administration.coaches}</p></div>` : ""}
+        ${yr.administration.board ? `<div class="yb__field"><span class="yb__field-label">Board &amp; Leadership</span>${formatBoardText(yr.administration.board)}</div>` : ""}
+        ${yr.administration.coaches ? `<div class="yb__field"><span class="yb__field-label">Coaches &amp; Staff</span>${formatBoardText(yr.administration.coaches)}</div>` : ""}
         ${hasNotes ? `<div class="yb__field"><span class="yb__field-label">Notes</span><p class="yb__field-value">${yr.administration.notes}</p></div>` : ""}
       </div>
       ${hasEv ? `
