@@ -829,7 +829,7 @@ function contributePage() {
 // ── RENDER ───────────────────────────────────────────────
 function render() {
   const app = document.getElementById("app");
-  if (!hasAccess && page !== "signup") {
+  if (!hasAccess && page !== "signup" && page !== "contribute") {
     app.innerHTML = landingPage();
   } else if (page === "home") app.innerHTML = homePage();
   else if (page === "records") app.innerHTML = recordsPage();
