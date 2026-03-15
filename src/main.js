@@ -1,6 +1,7 @@
 import "./style.css";
 import { records, decades, categoryLabels } from "./data/records.js";
 import { editorialNotes, underlyingIssues, nbbfConstitution } from "./pages.js";
+import { coaches } from "./data/coaches.js";
 
 let page = "home";
 let state = { decade: "all", search: "" };
@@ -84,6 +85,7 @@ function nav() {
         <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
+        <button class="nav__link ${page==="coaches"?"active":""}" data-nav="coaches">Coaches</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
@@ -745,6 +747,60 @@ function signupPage() {
 }
 
 
+// ── COACHES ──────────────────────────────────────────────
+function coachesPage() {
+  const sorted = [...coaches].sort((a,b) => b.years.length - a.years.length || a.name.localeCompare(b.name));
+
+  function outcomeIcon(o) {
+    if (o === "win") return '<span class="coach-result__icon coach-result__icon--win">🥇</span>';
+    if (o === "runner-up") return '<span class="coach-result__icon coach-result__icon--silver">🥈</span>';
+    if (o === "bronze") return '<span class="coach-result__icon coach-result__icon--bronze">🥉</span>';
+    return '<span class="coach-result__icon">🏀</span>';
+  }
+
+  function coachCard(c) {
+    const span = c.years.length === 1 ? "1 year" : c.years.length + " years";
+    const first = Math.min(...c.years);
+    const last = Math.max(...c.years);
+    const period = first === last ? first : first + "–" + last;
+    const resultRows = c.results.length ? c.results.map(r =>
+      '<div class="coach-result">' + outcomeIcon(r.outcome) +
+      '<span class="coach-result__year">' + r.year + '</span>' +
+      '<span class="coach-result__title">' + r.title + '</span></div>'
+    ).join("") : '<div class="coach-result__empty">No international results recorded for this coach's tenure.</div>';
+
+    const medals = (c.wins ? '<span class="coach-medal coach-medal--gold">🥇 ' + c.wins + '</span>' : '') +
+                   (c.silver ? '<span class="coach-medal coach-medal--silver">🥈 ' + c.silver + '</span>' : '') +
+                   (c.bronze ? '<span class="coach-medal coach-medal--bronze">🥉 ' + c.bronze + '</span>' : '');
+
+    return "<div class=\"coach-card\">" +
+      "<div class=\"coach-card__head\">" +
+        "<div class=\"coach-card__info\">" +
+          "<div class=\"coach-card__name\">" + c.name + "</div>" +
+          "<div class=\"coach-card__meta\">" + c.role + " &middot; " + period + " &middot; " + span + "</div>" +
+        "</div>" +
+        "<div class=\"coach-card__medals\">" + (medals || "<span class=\"coach-card__no-medal\">—</span>") + "</div>" +
+      "</div>" +
+      "<div class=\"coach-card__results\">" + resultRows + "</div>" +
+    "</div>";
+  }
+
+  return nav() +
+  '<div class="signup-page"><div class="signup-page__inner">' +
+  crumb("Coaches") +
+  '<h1 class="signup-page__title">Nigeria Basketball Coaches</h1>' +
+  '<p class="signup-page__sub">Every coach who has led or assisted the national teams from 1964 to 2020 — with their international results. ' + sorted.length + ' coaches across 56 years of Nigerian basketball.</p>' +
+  '<div class="coaches-legend">' +
+    '<span class="coach-medal coach-medal--gold">🥇 Gold / 1st Place</span>' +
+    '<span class="coach-medal coach-medal--silver">🥈 Silver / 2nd Place</span>' +
+    '<span class="coach-medal coach-medal--bronze">🥉 Bronze / 3rd Place</span>' +
+    '<span class="coach-medal">🏀 Participated</span>' +
+  '</div>' +
+  '<div class="coaches-list">' + sorted.map(coachCard).join("") + '</div>' +
+  '</div></div>' +
+  footer();
+}
+
 // ── CONTRIBUTE ────────────────────────────────────────────
 function contributePage() {
   return `
@@ -874,7 +930,9 @@ function render() {
   else if (page === "constitution") app.innerHTML = constitutionPage();
   else if (page === "about") app.innerHTML = aboutPage();
   else if (page === "signup") app.innerHTML = signupPage();
+  else if (page === "coaches") app.innerHTML = coachesPage();
   else if (page === "contribute") app.innerHTML = contributePage();
+  else if (page === "coaches") app.innerHTML = coachesPage();
   else if (page === "contribute") app.innerHTML = contributePage();
   bindEvents();
 }
