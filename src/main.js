@@ -489,7 +489,10 @@ function landingPage() {
         <h1 class="landing__title">Nigeria Basketball Archive</h1>
         <p class="landing__subtitle">56 Years of Records. <em>Documented.</em></p>
         <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by Coach OBJ — Oliver B. Johnson. Edited and built by Halima Abdul.</p>
-        <button class="landing__cta" id="landingCta">Request Access</button>
+        <div class="landing__cta-group">
+          <button class="landing__cta" id="landingCta">Request Access</button>
+          <button class="landing__cta landing__cta--outline" id="landingContribute">Contribute to the Archive</button>
+        </div>
         <p class="landing__credit">Edited &amp; Built by <strong>Halima Abdul</strong></p>
       </div>
       <div class="landing__stats">
@@ -930,6 +933,8 @@ function bindEvents() {
   const landingCta2 = document.getElementById("landingCta2");
   if (landingCta) landingCta.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
   if (landingCta2) landingCta2.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
+  const landingContribute = document.getElementById("landingContribute");
+  if (landingContribute) landingContribute.addEventListener("click", () => { page = "contribute"; pushHistory("contribute", {}); render(); window.scrollTo(0,0); });
 
   // Contribution form
   const contribForm = document.getElementById("contribForm");
