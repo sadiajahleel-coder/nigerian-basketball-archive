@@ -5,6 +5,27 @@ import { editorialNotes, underlyingIssues, nbbfConstitution } from "./pages.js";
 let page = "home";
 let state = { decade: "all", search: "" };
 
+// Browser history support
+function pushHistory(p, s) {
+  const params = new URLSearchParams();
+  params.set("page", p);
+  if (s.decade && s.decade !== "all") params.set("decade", s.decade);
+  if (s.search) params.set("search", s.search);
+  history.pushState({ page: p, state: s }, "", "?" + params.toString());
+}
+
+window.addEventListener("popstate", (e) => {
+  if (e.state) {
+    page = e.state.page;
+    state = { decade: "all", search: "", ...e.state.state };
+  } else {
+    page = "home";
+    state = { decade: "all", search: "" };
+  }
+  render();
+  window.scrollTo(0, 0);
+});
+
 function totalEvents() {
   return records.reduce((s, yr) => s + yr.events.length, 0);
 }
@@ -16,6 +37,7 @@ function navigate(p, s = {}) {
   if (s.decade !== undefined) state.decade = s.decade;
   if (s.search !== undefined) state.search = s.search;
   else state.search = "";
+  pushHistory(p, { decade: state.decade, search: state.search });
   window.scrollTo(0, 0);
   render();
 }
@@ -39,6 +61,7 @@ function nav() {
         <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
+        <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
     </div>
   </nav>`;
@@ -72,7 +95,7 @@ function homePage() {
   <div class="hero">
     <div class="hero__inner">
       <div class="hero__left">
-        <p class="hero__label">Nigerian Basketball Federation · Est. 1964</p>
+        <p class="hero__label">NBBF — Nigeria Basketball Federation · Est. 1964</p>
         <h1 class="hero__title">56 Years of Nigerian Basketball, <em>Documented.</em></h1>
         <p class="hero__desc">The complete record of every chairman, coach, tournament, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020.</p>
         <div class="hero__search">
@@ -81,7 +104,7 @@ function homePage() {
         </div>
       </div>
       <div class="hero__right">
-        <p class="hero__stats-title">Archive at a glance</p>
+        <p class="hero__stats-title">Nigeria Basketball Federation (NBBF)</p>
         <div class="hero__stat"><div class="hero__stat-num">56</div><div class="hero__stat-label">Years Covered</div></div>
         <div class="hero__stat"><div class="hero__stat-num">${records.length}</div><div class="hero__stat-label">Year Records</div></div>
         <div class="hero__stat"><div class="hero__stat-num">${totalEvents()}</div><div class="hero__stat-label">Events Recorded</div></div>
@@ -376,6 +399,93 @@ function aboutPage() {
   ${footer()}`;
 }
 
+// ── SIGNUP ───────────────────────────────────────────────
+const FORM_URL = "https://script.google.com/macros/s/AKfycbzoFdbSCNcPhGTOwz8m8OznCFpbgEWLjef2GnkfWpJ8I4tZPsrewjFNpHTGFeFClbgf/exec";
+
+function signupPage() {
+  return `
+  ${nav()}
+  <div class="signup-page">
+    <div class="signup-page__inner">
+      ${crumb("Request Access")}
+      <h1 class="signup-page__title">Request Access to the Archive</h1>
+      <p class="signup-page__sub">The Nigeria Basketball Archive contains 56 years of records documenting every chairman, coach, tournament and international competition of the NBBF. Complete the form below to request full access.</p>
+
+      <div class="signup-form-wrap">
+        <form class="signup-form" id="signupForm" novalidate>
+          <div class="sf-group">
+            <label class="sf-label" for="sf-name">Full Name <span class="sf-required">*</span></label>
+            <input class="sf-input" id="sf-name" type="text" placeholder="e.g. Emeka Okafor" autocomplete="name" required/>
+            <span class="sf-error" id="err-name">Please enter your full name.</span>
+          </div>
+          <div class="sf-group">
+            <label class="sf-label" for="sf-email">Email Address <span class="sf-required">*</span></label>
+            <input class="sf-input" id="sf-email" type="email" placeholder="e.g. emeka@example.com" autocomplete="email" required/>
+            <span class="sf-error" id="err-email">Please enter a valid email address.</span>
+          </div>
+          <div class="sf-group">
+            <label class="sf-label" for="sf-org">Organisation / Club <span class="sf-required">*</span></label>
+            <input class="sf-input" id="sf-org" type="text" placeholder="e.g. Kano Pillars, NBBF, University of Lagos" required/>
+            <span class="sf-error" id="err-org">Please enter your organisation or club.</span>
+          </div>
+          <div class="sf-group">
+            <label class="sf-label" for="sf-role">Role in Basketball <span class="sf-required">*</span></label>
+            <select class="sf-input sf-select" id="sf-role" required>
+              <option value="">— Select your role —</option>
+              <option value="Player">Player</option>
+              <option value="Coach">Coach</option>
+              <option value="Referee / Official">Referee / Official</option>
+              <option value="Administrator / Federation Official">Administrator / Federation Official</option>
+              <option value="Journalist / Media">Journalist / Media</option>
+              <option value="Researcher / Academic">Researcher / Academic</option>
+              <option value="Fan / Supporter">Fan / Supporter</option>
+              <option value="Other">Other</option>
+            </select>
+            <span class="sf-error" id="err-role">Please select your role.</span>
+          </div>
+
+          <div class="sf-submit-row">
+            <button class="sf-submit" type="submit" id="sf-submit-btn">
+              <span id="sf-btn-text">Submit Request</span>
+              <span id="sf-btn-loading" style="display:none">Submitting…</span>
+            </button>
+          </div>
+
+          <div class="sf-success" id="sf-success" style="display:none">
+            <div class="sf-success__icon">✓</div>
+            <h3 class="sf-success__title">Request Received</h3>
+            <p class="sf-success__msg">Thank you for your interest in the Nigeria Basketball Archive. Your request has been recorded and you will be contacted shortly.</p>
+            <button class="sf-success__back" data-nav="home">Back to Home</button>
+          </div>
+
+          <div class="sf-error-general" id="sf-error-general" style="display:none">
+            Something went wrong. Please try again or contact us directly.
+          </div>
+        </form>
+
+        <div class="signup-info">
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">What you get access to</h3>
+            <ul class="signup-info__list">
+              <li>Complete NBBF/NABBA board records 1964–2020</li>
+              <li>National coaching staff every year</li>
+              <li>All domestic tournament results</li>
+              <li>Full international competition records</li>
+              <li>The Underlying Issues — political analysis</li>
+              <li>Full NBBF Constitution</li>
+            </ul>
+          </div>
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">Compiled by</h3>
+            <p class="signup-info__text"><strong>Coach OBJ</strong> — Oliver B. Johnson, Nigeria's National Basketball Coach from 1971. This archive is an upgrade of his original book <em>"25 Years of Basketball in Nigeria 1964–1989"</em>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  ${footer()}`;
+}
+
 // ── RENDER ───────────────────────────────────────────────
 function render() {
   const app = document.getElementById("app");
@@ -384,6 +494,7 @@ function render() {
   else if (page === "analysis") app.innerHTML = analysisPage();
   else if (page === "constitution") app.innerHTML = constitutionPage();
   else if (page === "about") app.innerHTML = aboutPage();
+  else if (page === "signup") app.innerHTML = signupPage();
   bindEvents();
 }
 
@@ -441,6 +552,49 @@ function bindEvents() {
     });
   });
   bindToggles();
+
+  // Signup form
+  const form = document.getElementById("signupForm");
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("sf-name").value.trim();
+      const email = document.getElementById("sf-email").value.trim();
+      const org = document.getElementById("sf-org").value.trim();
+      const role = document.getElementById("sf-role").value;
+
+      // Validate
+      let valid = true;
+      const showErr = (id, show) => { document.getElementById(id).style.display = show ? "block" : "none"; };
+      if (!name) { showErr("err-name", true); valid = false; } else showErr("err-name", false);
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr("err-email", true); valid = false; } else showErr("err-email", false);
+      if (!org) { showErr("err-org", true); valid = false; } else showErr("err-org", false);
+      if (!role) { showErr("err-role", true); valid = false; } else showErr("err-role", false);
+      if (!valid) return;
+
+      // Submit
+      const btn = document.getElementById("sf-submit-btn");
+      document.getElementById("sf-btn-text").style.display = "none";
+      document.getElementById("sf-btn-loading").style.display = "inline";
+      btn.disabled = true;
+
+      try {
+        await fetch(FORM_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, organisation: org, role }),
+          mode: "no-cors"
+        });
+        form.style.display = "none";
+        document.getElementById("sf-success").style.display = "flex";
+      } catch (err) {
+        document.getElementById("sf-error-general").style.display = "block";
+        document.getElementById("sf-btn-text").style.display = "inline";
+        document.getElementById("sf-btn-loading").style.display = "none";
+        btn.disabled = false;
+      }
+    });
+  }
 }
 
 render();
