@@ -46,7 +46,7 @@ function totalEvents() {
 function decadeCount(val) {
   return records.filter(yr => yr.decade === val).length;
 }
-const protectedPages = ["records", "analysis", "constitution", "about", "contribute"];
+const protectedPages = ["records", "analysis", "constitution", "about"];
 
 function navigate(p, s = {}) {
   if (protectedPages.includes(p) && !hasAccess) {
@@ -84,7 +84,6 @@ function nav() {
         <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
-        <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
@@ -128,14 +127,7 @@ function homePage() {
           <input class="hero__search-input" id="heroSearch" type="search" placeholder="Search a year, name, team or event…" autocomplete="off"/>
           <button class="hero__search-btn" id="heroSearchBtn">Search</button>
         </div>
-        <div class="search-preview" id="searchPreview" style="display:none">
-          <div class="search-preview__results" id="searchPreviewResults"></div>
-          <div class="search-preview__lock">
-            <div class="search-preview__lock-icon">🔒</div>
-            <div class="search-preview__lock-text">Sign up to read full results</div>
-            <button class="search-preview__lock-btn" id="searchPreviewCta">Request Access</button>
-          </div>
-        </div>
+
       </div>
       <div class="hero__right">
         <p class="hero__stats-title">Nigeria Basketball Federation (NBBF)</p>
@@ -500,6 +492,20 @@ function landingPage() {
         <div class="landing__cta-group">
           <button class="landing__cta" id="landingCta">Request Access</button>
           <button class="landing__cta landing__cta--outline" id="landingContribute">Contribute to the Archive</button>
+        </div>
+        <div class="landing__search-wrap">
+          <div class="hero__search" style="max-width:460px;">
+            <input class="hero__search-input" id="heroSearch" type="search" placeholder="Search a year, name, coach or event…" autocomplete="off"/>
+            <button class="hero__search-btn" id="heroSearchBtn">Search</button>
+          </div>
+          <div class="search-preview" id="searchPreview" style="display:none">
+            <div class="search-preview__results" id="searchPreviewResults"></div>
+            <div class="search-preview__lock">
+              <div class="search-preview__lock-icon">🔒</div>
+              <div class="search-preview__lock-text">Sign up to read full results</div>
+              <button class="search-preview__lock-btn" id="searchPreviewCta">Request Access</button>
+            </div>
+          </div>
         </div>
         <p class="landing__credit">Edited &amp; Built by <strong><a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link">Halima Abdul</a></strong></p>
       </div>
@@ -1027,4 +1033,3 @@ function bindEvents() {
 }
 
 render();
-
