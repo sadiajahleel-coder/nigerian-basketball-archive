@@ -94,7 +94,8 @@ function footer() {
   return `<footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">Nigeria Basketball Archive</div>
-      <div class="footer__text">Compiled by <strong>Coach OBJ</strong> — Oliver B. Johnson · 1964–2020 · NBBF<br>Edited &amp; built by <strong>Halima Abdul</strong></div>
+      <div class="footer__text">Compiled by <strong>Coach OBJ</strong> — Oliver B. Johnson · 1964–2020 · NBBF</div>
+      <div class="footer__credit">Edited &amp; Built by <strong>Halima Abdul</strong></div>
     </div>
   </footer>`;
 }
@@ -431,7 +432,7 @@ function landingPage() {
         <p class="landing__eyebrow">NBBF — Nigeria Basketball Federation · Est. 1964</p>
         <h1 class="landing__title">Nigeria Basketball Archive</h1>
         <p class="landing__subtitle">56 Years of Records. <em>Documented.</em></p>
-        <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by Coach OBJ — Oliver B. Johnson.</p>
+        <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by Coach OBJ — Oliver B. Johnson. Edited and built by Halima Abdul.</p>
         <button class="landing__cta" id="landingCta">Request Access</button>
       </div>
       <div class="landing__stats">
@@ -475,7 +476,8 @@ function landingPage() {
     <footer class="footer">
       <div class="footer__inner">
         <div class="footer__brand">Nigeria Basketball Archive</div>
-        <div class="footer__text">Compiled by <strong>Coach OBJ</strong> — Oliver B. Johnson · 1964–2020 · NBBF<br>Edited &amp; built by <strong>Halima Abdul</strong></div>
+        <div class="footer__text">Compiled by <strong>Coach OBJ</strong> — Oliver B. Johnson · 1964–2020 · NBBF</div>
+        <div class="footer__credit">Edited &amp; Built by <strong>Halima Abdul</strong></div>
       </div>
     </footer>
   </div>`;
@@ -560,6 +562,10 @@ function signupPage() {
           <div class="signup-info__block">
             <h3 class="signup-info__title">Compiled by</h3>
             <p class="signup-info__text"><strong>Coach OBJ</strong> — Oliver B. Johnson, Nigeria's National Basketball Coach from 1971. This archive is an upgrade of his original book <em>"25 Years of Basketball in Nigeria 1964–1989"</em>.</p>
+          </div>
+          <div class="signup-info__block">
+            <h3 class="signup-info__title">Edited &amp; Built by</h3>
+            <p class="signup-info__text"><strong>Halima Abdul</strong> — digitised and built this archive for public access, making 56 years of Nigerian basketball history available online for the first time.</p>
           </div>
         </div>
       </div>
