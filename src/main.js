@@ -96,8 +96,8 @@ function footer() {
   return `<footer class="footer">
     <div class="footer__inner">
       <div class="footer__brand">Nigeria Basketball Archive</div>
-      <div class="footer__text">Compiled by <strong>Coach OBJ</strong> — Oliver B. Johnson · 1964–2020 · NBBF</div>
-      <div class="footer__credit">Edited &amp; Built by <strong>Halima Abdul</strong></div>
+      <div class="footer__text">Compiled by <strong><a href="https://www.bb4p.org" target="_blank" class="credit-link">Coach OBJ</a></strong> — <a href="https://www.bb4p.org" target="_blank" class="credit-link">Oliver B. Johnson</a> · 1964–2020 · NBBF</div>
+      <div class="footer__credit">Edited &amp; Built by <strong><a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link">Halima Abdul</a></strong></div>
     </div>
   </footer>`;
 }
@@ -272,7 +272,7 @@ function homePage() {
     <div class="about-strip">
       <div>
         <div class="about-strip__title">Compiled by Coach OBJ</div>
-        <div class="about-strip__text">This archive was compiled by Oliver B. Johnson — Coach OBJ — Nigeria's National Basketball Coach from 1971. It documents the full 56-year history of the game in Nigeria, from the founding of NABBA to 2020. Edited and built by Halima Abdul.</div>
+        <div class="about-strip__text">This archive was compiled by <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Oliver B. Johnson — Coach OBJ</a> — Nigeria's National Basketball Coach from 1971. It documents the full 56-year history of the game in Nigeria, from the founding of NABBA to 2020. Edited and built by Halima Abdul.</div>
       </div>
       <button class="about-strip__btn" data-nav="about">Read More</button>
     </div>
@@ -456,7 +456,7 @@ function aboutPage() {
       <span style="font-size:12px;color:var(--ink-light)">About</span>
     </div>
     <h1 class="about-page__title">About This Archive</h1>
-    <p>This archive was compiled by <strong>Coach OBJ</strong> — Oliver B. Johnson — who served as Nigeria's National Basketball Coach from 1971, making him one of the longest-serving and most influential figures in Nigerian basketball history.</p>
+    <p>This archive was compiled by <strong><a href="https://www.bb4p.org" target="_blank" class="credit-link">Coach OBJ</a></strong> — <a href="https://www.bb4p.org" target="_blank" class="credit-link">Oliver B. Johnson</a> — who served as Nigeria's National Basketball Coach from 1971, making him one of the longest-serving and most influential figures in Nigerian basketball history.</p>
     <p>It is an upgrade of his original book, <em>"25 Years of Basketball in Nigeria 1964–1989"</em>, extended to cover the full period 1964 to 2020.</p>
     <h2>What the Archive Contains</h2>
     <p>For every year from 1964 to 2020:</p>
@@ -473,7 +473,7 @@ function aboutPage() {
     <h2>The Federation</h2>
     <p>The Nigeria Basketball Federation (NBBF), originally the Nigeria Amateur Basketball Association (NABBA), was founded in 1964. It governs basketball at all levels in Nigeria and is affiliated to FIBA and Africa Zone 3.</p>
     <h2>Digital Archive</h2>
-    <p>This digital version was edited and built by <strong>Halima Abdul</strong>, making 56 years of Nigerian basketball history publicly accessible.</p>
+    <p>This digital version was edited and built by <strong><a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link">Halima Abdul</a></strong>, making 56 years of Nigerian basketball history publicly accessible.</p>
     <button class="about-page__btn" data-nav="records">Explore the Records</button>
   </div>
   ${footer()}`;
@@ -488,12 +488,12 @@ function landingPage() {
         <p class="landing__eyebrow">NBBF — Nigeria Basketball Federation · Est. 1964</p>
         <h1 class="landing__title">Nigeria Basketball Archive</h1>
         <p class="landing__subtitle">56 Years of Records. <em>Documented.</em></p>
-        <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by Coach OBJ — Oliver B. Johnson. Edited and built by Halima Abdul.</p>
+        <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Coach OBJ — Oliver B. Johnson</a>. Edited and built by <a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link credit-link--light">Halima Abdul</a>.</p>
         <div class="landing__cta-group">
           <button class="landing__cta" id="landingCta">Request Access</button>
           <button class="landing__cta landing__cta--outline" id="landingContribute">Contribute to the Archive</button>
         </div>
-        <p class="landing__credit">Edited &amp; Built by <strong>Halima Abdul</strong></p>
+        <p class="landing__credit">Edited &amp; Built by <strong><a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link">Halima Abdul</a></strong></p>
       </div>
       <div class="landing__stats">
         <div class="landing__stat"><span class="landing__stat-num">56</span><span class="landing__stat-label">Years Documented</span></div>
@@ -536,8 +536,8 @@ function landingPage() {
     <footer class="footer">
       <div class="footer__inner">
         <div class="footer__brand">Nigeria Basketball Archive</div>
-        <div class="footer__text">Compiled by <strong>Coach OBJ</strong> — Oliver B. Johnson · 1964–2020 · NBBF</div>
-        <div class="footer__credit">Edited &amp; Built by <strong>Halima Abdul</strong></div>
+        <div class="footer__text">Compiled by <strong><a href="https://www.bb4p.org" target="_blank" class="credit-link">Coach OBJ</a></strong> — <a href="https://www.bb4p.org" target="_blank" class="credit-link">Oliver B. Johnson</a> · 1964–2020 · NBBF</div>
+        <div class="footer__credit">Edited &amp; Built by <strong><a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link">Halima Abdul</a></strong></div>
       </div>
     </footer>
   </div>`;
@@ -622,11 +622,11 @@ function signupPage() {
           </div>
           <div class="signup-info__block">
             <h3 class="signup-info__title">Compiled by</h3>
-            <p class="signup-info__text"><strong>Coach OBJ</strong> — Oliver B. Johnson, Nigeria's National Basketball Coach from 1971. This archive is an upgrade of his original book <em>"25 Years of Basketball in Nigeria 1964–1989"</em>.</p>
+            <p class="signup-info__text"><strong><a href="https://www.bb4p.org" target="_blank" class="credit-link">Coach OBJ</a></strong> — <a href="https://www.bb4p.org" target="_blank" class="credit-link">Oliver B. Johnson</a>, Nigeria's National Basketball Coach from 1971. This archive is an upgrade of his original book <em>"25 Years of Basketball in Nigeria 1964–1989"</em>.</p>
           </div>
           <div class="signup-info__block">
             <h3 class="signup-info__title">Edited &amp; Built by</h3>
-            <p class="signup-info__text"><strong>Halima Abdul</strong> — digitised and built this archive for public access, making 56 years of Nigerian basketball history available online for the first time.</p>
+            <p class="signup-info__text"><strong><a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link">Halima Abdul</a></strong> — digitised and built this archive for public access, making 56 years of Nigerian basketball history available online for the first time.</p>
           </div>
         </div>
       </div>
@@ -745,7 +745,7 @@ function contributePage() {
           </div>
           <div class="signup-info__block">
             <h3 class="signup-info__title">Edited &amp; Built by</h3>
-            <p class="signup-info__text"><strong>Halima Abdul</strong> — digitised and built this archive for public access, making 56 years of Nigerian basketball history available online for the first time.</p>
+            <p class="signup-info__text"><strong><a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link">Halima Abdul</a></strong> — digitised and built this archive for public access, making 56 years of Nigerian basketball history available online for the first time.</p>
           </div>
         </div>
       </div>
