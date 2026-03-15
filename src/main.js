@@ -14,7 +14,8 @@ function decadeCount(val) {
 function navigate(p, s = {}) {
   page = p;
   if (s.decade !== undefined) state.decade = s.decade;
-  state.search = "";
+  if (s.search !== undefined) state.search = s.search;
+  else state.search = "";
   window.scrollTo(0, 0);
   render();
 }
@@ -406,8 +407,8 @@ function bindEvents() {
   const heroSearch = document.getElementById("heroSearch");
   const heroBtn = document.getElementById("heroSearchBtn");
   if (heroBtn && heroSearch) {
-    heroBtn.addEventListener("click", () => { state.search = heroSearch.value; navigate("records"); });
-    heroSearch.addEventListener("keydown", e => { if (e.key === "Enter") { state.search = heroSearch.value; navigate("records"); } });
+    heroBtn.addEventListener("click", () => { const q = heroSearch.value.trim(); if (q) navigate("records", { search: q }); else navigate("records"); });
+    heroSearch.addEventListener("keydown", e => { if (e.key === "Enter") { const q = heroSearch.value.trim(); if (q) navigate("records", { search: q }); else navigate("records"); } });
   }
   const rpSearch = document.getElementById("rpSearch");
   if (rpSearch) {
