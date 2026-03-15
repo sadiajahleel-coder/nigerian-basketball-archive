@@ -923,3 +923,4 @@ function bindEvents() {
 }
 
 render();
+
