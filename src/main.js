@@ -215,6 +215,60 @@ function homePage() {
       </div>
     </div>
 
+    <div class="section-rule">
+      <span class="section-rule__title">Contribute to the Archive</span>
+      <div class="section-rule__line"></div>
+    </div>
+    <div class="contribute-section">
+      <div class="contribute-section__left">
+        <p class="contribute-section__intro">This archive is a living document. If you were part of Nigerian basketball — as a player, coach, official, journalist or fan — your records, photographs and stories belong here. Every contribution is reviewed, verified and credited by name.</p>
+        <div class="contribute-ways">
+          <div class="contribute-way">
+            <div class="contribute-way__icon">📄</div>
+            <div>
+              <div class="contribute-way__title">Missing Records</div>
+              <div class="contribute-way__desc">Fill gaps in years with incomplete data — board members, coaches, tournament results.</div>
+            </div>
+          </div>
+          <div class="contribute-way">
+            <div class="contribute-way__icon">✏️</div>
+            <div>
+              <div class="contribute-way__title">Corrections</div>
+              <div class="contribute-way__desc">Flag errors in existing records and provide the correct information with a source.</div>
+            </div>
+          </div>
+          <div class="contribute-way">
+            <div class="contribute-way__icon">📷</div>
+            <div>
+              <div class="contribute-way__title">Photos & Documents</div>
+              <div class="contribute-way__desc">Newspaper clippings, match photographs, official documents and programmes.</div>
+            </div>
+          </div>
+          <div class="contribute-way">
+            <div class="contribute-way__icon">🎙️</div>
+            <div>
+              <div class="contribute-way__title">Personal Testimony</div>
+              <div class="contribute-way__desc">Your own story in Nigerian basketball — first-hand accounts from those who were there.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contribute-section__right">
+        <div class="contribute-cta-card">
+          <h3 class="contribute-cta-card__title">What We Need Most</h3>
+          <ul class="contribute-cta-card__list">
+            <li>Records from the early years — 1964 to 1979</li>
+            <li>State-level tournament results</li>
+            <li>Newspaper clippings and match photos</li>
+            <li>First-hand accounts from players and coaches</li>
+            <li>Photos of NBBF board meetings and ceremonies</li>
+          </ul>
+          <button class="contribute-cta-card__btn" data-nav="contribute">Submit a Contribution</button>
+          <p class="contribute-cta-card__note">All contributors are credited by name in the archive.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="about-strip">
       <div>
         <div class="about-strip__title">Compiled by Coach OBJ</div>
@@ -436,6 +490,7 @@ function landingPage() {
         <p class="landing__subtitle">56 Years of Records. <em>Documented.</em></p>
         <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by Coach OBJ — Oliver B. Johnson. Edited and built by Halima Abdul.</p>
         <button class="landing__cta" id="landingCta">Request Access</button>
+        <p class="landing__credit">Edited &amp; Built by <strong>Halima Abdul</strong></p>
       </div>
       <div class="landing__stats">
         <div class="landing__stat"><span class="landing__stat-num">56</span><span class="landing__stat-label">Years Documented</span></div>
