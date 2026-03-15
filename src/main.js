@@ -1734,7 +1734,7 @@ function searchPage() {
       }
     });
 
-    if (results.length === 0) return \`<div class="search-empty">No results found for "<strong>\${query}</strong>"</div>\`;
+    if (results.length === 0) return `<div class="search-empty">No results found for "<strong>${query}</strong>"</div>`;
 
     const grouped = {};
     results.forEach(r => {
@@ -1743,35 +1743,35 @@ function searchPage() {
     });
 
     const typeLabels = { record: "Administration", event: "Events", coach: "Coaches", player: "Players" };
-    let html = \`<p class="search-count">\${results.length} result\${results.length !== 1 ? "s" : ""} for "<strong>\${query}</strong>"</p>\`;
+    let html = `<p class="search-count">${results.length} result${results.length !== 1 ? "s" : ""} for "<strong>${query}</strong>"</p>`;
 
     Object.entries(grouped).forEach(([type, items]) => {
-      html += \`<div class="search-group"><div class="search-group__label">\${typeLabels[type] || type} (\${items.length})</div>\`;
+      html += `<div class="search-group"><div class="search-group__label">${typeLabels[type] || type} (${items.length})</div>`;
       items.slice(0, 20).forEach(item => {
-        html += \`<div class="search-result" data-nav="\${item.page}">
-          <div class="search-result__label">\${highlight(item.label, query)}</div>
-          <div class="search-result__detail">\${highlight(item.detail, query)}</div>
-        </div>\`;
+        html += `<div class="search-result" data-nav="${item.page}">
+          <div class="search-result__label">${highlight(item.label, query)}</div>
+          <div class="search-result__detail">${highlight(item.detail, query)}</div>
+        </div>`;
       });
-      if (items.length > 20) html += \`<div class="search-more">+\${items.length - 20} more results</div>\`;
+      if (items.length > 20) html += `<div class="search-more">+${items.length - 20} more results</div>`;
       html += "</div>";
     });
     return html;
   }
 
-  return nav() + \`
+  return nav() + `
   <div class="signup-page">
     <div class="signup-page__inner">
-      \${crumb("Search")}
+      ${crumb("Search")}
       <h1 class="signup-page__title">Search the Archive</h1>
       <p class="signup-page__sub">Search across all 57 years of records, events, coaches, and players.</p>
       <div class="search-bar-wrap">
-        <input type="text" id="globalSearch" class="search-bar-input" placeholder="Search names, tournaments, years…" value="\${window._searchQuery || ""}" autocomplete="off" />
+        <input type="text" id="globalSearch" class="search-bar-input" placeholder="Search names, tournaments, years…" value="${window._searchQuery || ""}" autocomplete="off" />
         <span class="search-bar-icon">🔍</span>
       </div>
-      <div id="searchResults">\${buildResults(q)}</div>
+      <div id="searchResults">${buildResults(q)}</div>
     </div>
-  </div>\` + footer();
+  </div>` + footer();
 }
 
 // ── PLAYERS ───────────────────────────────────────────────
@@ -2074,15 +2074,15 @@ function bindToggles() {
         // Show share popup
         const popup = document.createElement("div");
         popup.className = "share-popup";
-        popup.innerHTML = \`<div class="share-popup__inner">
-          <div class="share-popup__title">Share \${year}</div>
+        popup.innerHTML = `<div class="share-popup__inner">
+          <div class="share-popup__title">Share ${year}</div>
           <div class="share-popup__btns">
-            <a class="share-popup__btn share-popup__btn--wa" href="https://api.whatsapp.com/send?text=\${encodeURIComponent(text + url)}" target="_blank">WhatsApp</a>
-            <a class="share-popup__btn share-popup__btn--tw" href="https://twitter.com/intent/tweet?text=\${encodeURIComponent(text)}&url=\${encodeURIComponent(url)}" target="_blank">Twitter / X</a>
+            <a class="share-popup__btn share-popup__btn--wa" href="https://api.whatsapp.com/send?text=${encodeURIComponent(text + url)}" target="_blank">WhatsApp</a>
+            <a class="share-popup__btn share-popup__btn--tw" href="https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}" target="_blank">Twitter / X</a>
             <button class="share-popup__btn share-popup__btn--copy" id="copyShareLink">Copy Link</button>
           </div>
           <button class="share-popup__close">✕</button>
-        </div>\`;
+        </div>`;
         document.body.appendChild(popup);
         document.getElementById("copyShareLink").onclick = () => {
           navigator.clipboard.writeText(url).then(() => {
@@ -2104,10 +2104,10 @@ function bindToggles() {
       const rec = records.find(r => r.year === year);
       if (!rec) return;
       const evRows = (rec.events || []).map(ev =>
-        \`<tr><td style="padding:6px 8px;border-bottom:1px solid #eee;font-weight:600;color:#0a2218;font-size:12px">\${ev.title}</td><td style="padding:6px 8px;border-bottom:1px solid #eee;font-size:12px;color:#444">\${ev.detail}</td></tr>\`
+        `<tr><td style="padding:6px 8px;border-bottom:1px solid #eee;font-weight:600;color:#0a2218;font-size:12px">${ev.title}</td><td style="padding:6px 8px;border-bottom:1px solid #eee;font-size:12px;color:#444">${ev.detail}</td></tr>`
       ).join("");
       const win = window.open("", "_blank");
-      win.document.write(\`<!DOCTYPE html><html><head><title>Nigeria Basketball \${year}</title>
+      win.document.write(`<!DOCTYPE html><html><head><title>Nigeria Basketball ${year}</title>
       <style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;color:#222;line-height:1.5}
       h1{color:#0a2218;border-bottom:3px solid #d4621a;padding-bottom:8px}
       h2{color:#0a2218;font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-top:24px}
@@ -2115,15 +2115,15 @@ function bindToggles() {
       th{background:#0a2218;color:#fff;padding:8px;text-align:left;font-size:12px}
       .footer{margin-top:40px;font-size:11px;color:#999;border-top:1px solid #eee;padding-top:8px}
       @media print{body{margin:20px}}</style></head><body>
-      <h1>Nigeria Basketball \${year}</h1>
+      <h1>Nigeria Basketball ${year}</h1>
       <h2>Administration</h2>
-      <p>\${rec.administration.board || "—"}</p>
-      \${rec.administration.coaches ? \`<h2>Coaches</h2><p>\${rec.administration.coaches}</p>\` : ""}
-      \${rec.administration.notes ? \`<h2>Notes</h2><p>\${rec.administration.notes}</p>\` : ""}
-      \${evRows ? \`<h2>Events &amp; Competitions</h2><table><tr><th>Event</th><th>Details</th></tr>\${evRows}</table>\` : ""}
+      <p>${rec.administration.board || "—"}</p>
+      ${rec.administration.coaches ? `<h2>Coaches</h2><p>${rec.administration.coaches}</p>` : ""}
+      ${rec.administration.notes ? `<h2>Notes</h2><p>${rec.administration.notes}</p>` : ""}
+      ${evRows ? `<h2>Events &amp; Competitions</h2><table><tr><th>Event</th><th>Details</th></tr>${evRows}</table>` : ""}
       <div class="footer">Nigeria Basketball Archive 1964–2020 · Compiled by Coach OBJ · nigerian-basketball-archive.vercel.app</div>
       <script>window.onload = function(){ window.print(); }<\/script>
-      </body></html>\`);
+      </body></html>`);
       win.document.close();
     });
   });
