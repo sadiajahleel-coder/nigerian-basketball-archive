@@ -1022,6 +1022,8 @@ function nav() {
         <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
+        <button class="nav__link ${page==="search"?"active":""}" data-nav="search">Search</button>
+        <button class="nav__link ${page==="players"?"active":""}" data-nav="players">Players</button>
         <button class="nav__link ${page==="coaches"?"active":""}" data-nav="coaches">Coaches</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
@@ -1292,11 +1294,19 @@ function yearBlock(yr) {
           ${hasEv ? `<span class="yb__tag yb__tag--events">${yr.events.length} event${yr.events.length>1?"s":""}</span>` : ""}
         </div>
       </div>
-      <button class="yb__btn">
-        <svg class="yb__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+      <div class="yb__actions">
+        <button class="yb__action-btn yb__share-btn" data-year="${yr.year}" title="Share ${yr.year}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        </button>
+        <button class="yb__action-btn yb__print-btn" data-year="${yr.year}" title="Export ${yr.year}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        </button>
+        <button class="yb__btn">
+          <svg class="yb__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
     </div>
     <div class="yb__body">
       <div class="yb__section">
@@ -1684,6 +1694,160 @@ function signupPage() {
 }
 
 
+// ── GLOBAL SEARCH ─────────────────────────────────────────
+function searchPage() {
+  const q = (window._searchQuery || "").toLowerCase().trim();
+
+  function highlight(text, query) {
+    if (!query || !text) return text || "";
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return text.replace(new RegExp("(" + escaped + ")", "gi"), "<mark>$1</mark>");
+  }
+
+  function buildResults(query) {
+    if (!query || query.length < 2) return "";
+    const results = [];
+
+    // Search records
+    records.forEach(r => {
+      const yearStr = String(r.year);
+      // Board text
+      const board = (r.administration.board || "") + " " + (r.administration.coaches || "") + " " + (r.administration.notes || "");
+      if (board.toLowerCase().includes(query)) {
+        results.push({ type: "record", year: r.year, label: r.year + " — Administration", detail: board.substring(0, 120) + "…", page: "records" });
+      }
+      // Events
+      (r.events || []).forEach(e => {
+        const eText = (e.title + " " + e.detail).toLowerCase();
+        if (eText.includes(query)) {
+          results.push({ type: "event", year: r.year, label: r.year + " — " + e.title, detail: e.detail.substring(0, 120) + "…", page: "records", cat: e.category });
+        }
+      });
+    });
+
+    // Search coaches
+    const coachList = typeof coaches !== "undefined" ? coaches : [];
+    coachList.forEach(c => {
+      if (c.name.toLowerCase().includes(query)) {
+        const span = c.years.length === 1 ? "1 year" : c.years.length + " years";
+        results.push({ type: "coach", year: Math.min(...c.years), label: c.name, detail: c.role + " · " + span + " active · " + c.wins + " gold results", page: "coaches" });
+      }
+    });
+
+    if (results.length === 0) return \`<div class="search-empty">No results found for "<strong>\${query}</strong>"</div>\`;
+
+    const grouped = {};
+    results.forEach(r => {
+      if (!grouped[r.type]) grouped[r.type] = [];
+      grouped[r.type].push(r);
+    });
+
+    const typeLabels = { record: "Administration", event: "Events", coach: "Coaches", player: "Players" };
+    let html = \`<p class="search-count">\${results.length} result\${results.length !== 1 ? "s" : ""} for "<strong>\${query}</strong>"</p>\`;
+
+    Object.entries(grouped).forEach(([type, items]) => {
+      html += \`<div class="search-group"><div class="search-group__label">\${typeLabels[type] || type} (\${items.length})</div>\`;
+      items.slice(0, 20).forEach(item => {
+        html += \`<div class="search-result" data-nav="\${item.page}">
+          <div class="search-result__label">\${highlight(item.label, query)}</div>
+          <div class="search-result__detail">\${highlight(item.detail, query)}</div>
+        </div>\`;
+      });
+      if (items.length > 20) html += \`<div class="search-more">+\${items.length - 20} more results</div>\`;
+      html += "</div>";
+    });
+    return html;
+  }
+
+  return nav() + \`
+  <div class="signup-page">
+    <div class="signup-page__inner">
+      \${crumb("Search")}
+      <h1 class="signup-page__title">Search the Archive</h1>
+      <p class="signup-page__sub">Search across all 57 years of records, events, coaches, and players.</p>
+      <div class="search-bar-wrap">
+        <input type="text" id="globalSearch" class="search-bar-input" placeholder="Search names, tournaments, years…" value="\${window._searchQuery || ""}" autocomplete="off" />
+        <span class="search-bar-icon">🔍</span>
+      </div>
+      <div id="searchResults">\${buildResults(q)}</div>
+    </div>
+  </div>\` + footer();
+}
+
+// ── PLAYERS ───────────────────────────────────────────────
+function playersPage() {
+  // Extract notable players from records data
+  const playerMap = {};
+
+  records.forEach(r => {
+    (r.events || []).forEach(e => {
+      // Look for player mentions in intl events - extract team/player names
+      if (e.category === "intl" || e.category === "player") {
+        // Extract Nigerian delegation player lists
+        const delegMatch = (e.detail || "").match(/Nigeria(?:n)? Delegation[^:]*:(.+?)(?:\.|$)/i);
+        if (delegMatch) {
+          const names = delegMatch[1].split(/[,;]/).map(n => n.replace(/\([^)]*\)/g, "").replace(/\*|Capt\.|Capt/g, "").trim()).filter(n => n.length > 3 && n.length < 40);
+          names.forEach(name => {
+            if (!playerMap[name]) playerMap[name] = { years: [], events: [] };
+            if (!playerMap[name].years.includes(r.year)) playerMap[name].years.push(r.year);
+            playerMap[name].events.push({ year: r.year, title: e.title, outcome: e.outcome || "participated" });
+          });
+        }
+      }
+    });
+    // Also check admin notes for player names in delegation lists
+    const coaches = r.administration.coaches || "";
+  });
+
+  // Notable players hardcoded from the source document
+  const notable = [
+    { name: "Hakeem Olajuwon", nickname: "The Dream", note: "NBA Champion, Hall of Famer. Grew up playing in Lagos before moving to the USA.", years: [1984, 1988], highlight: true },
+    { name: "Masai Ujiri", nickname: "NBA Executive", note: "Former Nigeria national team assistant coach. Later became President of the Toronto Raptors.", years: [2002, 2003, 2004, 2005, 2006], highlight: true },
+    { name: "Olumide Oyedeji", nickname: "NBBF Players Representative", note: "Professional player who played in the NBA, FIBA World Cup and Olympics. Later NBBF Players Representative.", years: [2012, 2013, 2014, 2015, 2016], highlight: true },
+    { name: "Ejike Ugboaja", nickname: "D'Tigers Captain", note: "Long-serving captain and Players Representative of the NBBF.", years: [2017, 2018, 2019, 2020], highlight: false },
+    { name: "Ike Diogu", nickname: "D'Tigers", note: "NBA player who captained D'Tigers at AfroBasket 2017.", years: [2017], highlight: false },
+    { name: "Godwin Anani", nickname: "NABBA Vice Chairman", note: "One of the founding architects of Nigerian basketball administration from the 1960s through the 1990s.", years: [1966, 1970, 1975, 1976, 1977, 1980, 1988, 1989, 1990], highlight: true },
+    { name: "Uche Nebedum", nickname: "Player & Administrator", note: "Captain of East Central State Basketball 1972–74, National Women Captain 1972–78, Secretary General NABBA/NBBF 1983–85, Vice President NBBF 1999–2004. FIBA-AFRIQUE Basketball Gold Award 2011.", years: [1972, 1973, 1974, 1975, 1976, 1999, 2000, 2001, 2002, 2003, 2004], highlight: true },
+    { name: "Kunle Delano", nickname: "Pioneer", note: "One of the original members of the Nigeria Amateur Basketball Association from its founding. Team Manager for Nigeria's first international delegations.", years: [1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1983], highlight: false },
+    { name: "Isah Umar", nickname: "Niger Potters / NBBF", note: "Known as 'Gudus' (the hammer) at Niger Potters, Minna. Went to St Augustine University, North Carolina through Coach OBJ. Later NBBF North Central Zone Rep and Niger State Basketball Association Chairman.", years: [2017, 2018, 2019, 2020], highlight: false },
+    { name: "Bryant Mbamalu", nickname: "D'Tigers", note: "Featured in Nigeria squad at FIBA AfroBasket 2017.", years: [2017], highlight: false },
+    { name: "Kelechi Anuna", nickname: "D'Tigers", note: "Featured in Nigeria squad at FIBA AfroBasket 2017.", years: [2017], highlight: false },
+    { name: "Daniel Ochefu", nickname: "D'Tigers", note: "Featured in Nigeria squad at FIBA AfroBasket 2017.", years: [2017], highlight: false },
+  ];
+
+  function playerCard(p) {
+    const first = Math.min(...p.years);
+    const last = Math.max(...p.years);
+    const period = first === last ? String(first) : first + "–" + last;
+    return \`<div class="player-card\${p.highlight ? " player-card--notable" : ""}">
+      <div class="player-card__head">
+        <div class="player-card__avatar">\${p.name.charAt(0)}</div>
+        <div class="player-card__info">
+          <div class="player-card__name">\${p.name}\${p.highlight ? " ⭐" : ""}</div>
+          <div class="player-card__nick">\${p.nickname} · \${period}</div>
+        </div>
+      </div>
+      <div class="player-card__note">\${p.note}</div>
+    </div>\`;
+  }
+
+  return nav() + \`
+  <div class="signup-page">
+    <div class="signup-page__inner">
+      \${crumb("Players")}
+      <h1 class="signup-page__title">Notable Players</h1>
+      <p class="signup-page__sub">Players who represented Nigeria, shaped the game, or left a lasting mark on Nigerian basketball from 1964 to 2020. ⭐ marks the most celebrated figures.</p>
+      <div class="players-grid">
+        \${notable.map(playerCard).join("")}
+      </div>
+      <div class="players-note">
+        <strong>Help us grow this page.</strong> If you know of a player who should be included, use the
+        <button class="inline-link" data-nav="contribute">Contribute</button> page to send us their details.
+      </div>
+    </div>
+  </div>\` + footer();
+}
+
 // ── COACHES ──────────────────────────────────────────────
 function coachesPage() {
   const sorted = [...coaches].sort((a,b) => b.years.length - a.years.length || a.name.localeCompare(b.name));
@@ -1867,6 +2031,8 @@ function render() {
   else if (page === "constitution") app.innerHTML = constitutionPage();
   else if (page === "about") app.innerHTML = aboutPage();
   else if (page === "signup") app.innerHTML = signupPage();
+  else if (page === "search") app.innerHTML = searchPage();
+  else if (page === "players") app.innerHTML = playersPage();
   else if (page === "coaches") app.innerHTML = coachesPage();
   else if (page === "contribute") app.innerHTML = contributePage();
   bindEvents();
@@ -1888,7 +2054,9 @@ function rebuildRecords() {
 
 function bindToggles() {
   document.querySelectorAll(".yb__head").forEach(head => {
-    head.addEventListener("click", () => {
+    head.addEventListener("click", (e) => {
+      // Don't toggle if clicking share or print buttons
+      if (e.target.closest(".yb__share-btn") || e.target.closest(".yb__print-btn")) return;
       const yb = head.closest(".yb");
       const body = yb.querySelector(".yb__body");
       const btn = yb.querySelector(".yb__btn");
@@ -1898,7 +2066,75 @@ function bindToggles() {
       head.classList.toggle("open", !isOpen);
     });
   });
+
+  // Share buttons
+  document.querySelectorAll(".yb__share-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const year = btn.dataset.year;
+      const url = window.location.origin + window.location.pathname + "?year=" + year;
+      const text = "Nigeria Basketball Archive — " + year + " records: ";
+      if (navigator.share) {
+        navigator.share({ title: "Nigeria Basketball " + year, text: text, url: url });
+      } else {
+        // Show share popup
+        const popup = document.createElement("div");
+        popup.className = "share-popup";
+        popup.innerHTML = \`<div class="share-popup__inner">
+          <div class="share-popup__title">Share \${year}</div>
+          <div class="share-popup__btns">
+            <a class="share-popup__btn share-popup__btn--wa" href="https://api.whatsapp.com/send?text=\${encodeURIComponent(text + url)}" target="_blank">WhatsApp</a>
+            <a class="share-popup__btn share-popup__btn--tw" href="https://twitter.com/intent/tweet?text=\${encodeURIComponent(text)}&url=\${encodeURIComponent(url)}" target="_blank">Twitter / X</a>
+            <button class="share-popup__btn share-popup__btn--copy" id="copyShareLink">Copy Link</button>
+          </div>
+          <button class="share-popup__close">✕</button>
+        </div>\`;
+        document.body.appendChild(popup);
+        document.getElementById("copyShareLink").onclick = () => {
+          navigator.clipboard.writeText(url).then(() => {
+            document.getElementById("copyShareLink").textContent = "Copied!";
+            setTimeout(() => popup.remove(), 1200);
+          });
+        };
+        popup.querySelector(".share-popup__close").onclick = () => popup.remove();
+        popup.addEventListener("click", (ev) => { if (ev.target === popup) popup.remove(); });
+      }
+    });
+  });
+
+  // Print/export buttons
+  document.querySelectorAll(".yb__print-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const year = parseInt(btn.dataset.year);
+      const rec = records.find(r => r.year === year);
+      if (!rec) return;
+      const evRows = (rec.events || []).map(ev =>
+        \`<tr><td style="padding:6px 8px;border-bottom:1px solid #eee;font-weight:600;color:#0a2218;font-size:12px">\${ev.title}</td><td style="padding:6px 8px;border-bottom:1px solid #eee;font-size:12px;color:#444">\${ev.detail}</td></tr>\`
+      ).join("");
+      const win = window.open("", "_blank");
+      win.document.write(\`<!DOCTYPE html><html><head><title>Nigeria Basketball \${year}</title>
+      <style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;color:#222;line-height:1.5}
+      h1{color:#0a2218;border-bottom:3px solid #d4621a;padding-bottom:8px}
+      h2{color:#0a2218;font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-top:24px}
+      p{font-size:13px;margin:4px 0}table{width:100%;border-collapse:collapse;margin-top:8px}
+      th{background:#0a2218;color:#fff;padding:8px;text-align:left;font-size:12px}
+      .footer{margin-top:40px;font-size:11px;color:#999;border-top:1px solid #eee;padding-top:8px}
+      @media print{body{margin:20px}}</style></head><body>
+      <h1>Nigeria Basketball \${year}</h1>
+      <h2>Administration</h2>
+      <p>\${rec.administration.board || "—"}</p>
+      \${rec.administration.coaches ? \`<h2>Coaches</h2><p>\${rec.administration.coaches}</p>\` : ""}
+      \${rec.administration.notes ? \`<h2>Notes</h2><p>\${rec.administration.notes}</p>\` : ""}
+      \${evRows ? \`<h2>Events &amp; Competitions</h2><table><tr><th>Event</th><th>Details</th></tr>\${evRows}</table>\` : ""}
+      <div class="footer">Nigeria Basketball Archive 1964–2020 · Compiled by Coach OBJ · nigerian-basketball-archive.vercel.app</div>
+      <script>window.onload = function(){ window.print(); }<\/script>
+      </body></html>\`);
+      win.document.close();
+    });
+  });
 }
+
 
 function bindEvents() {
   document.querySelectorAll("[data-nav]").forEach(el => {
@@ -1953,6 +2189,64 @@ function bindEvents() {
   if (rpSearch) {
     rpSearch.addEventListener("input", e => { state.search = e.target.value; rebuildRecords(); });
   }
+
+  // Global search page handler
+  const globalSearch = document.getElementById("globalSearch");
+  if (globalSearch) {
+    globalSearch.focus();
+    globalSearch.addEventListener("input", e => {
+      window._searchQuery = e.target.value;
+      const q = e.target.value.toLowerCase().trim();
+      const resultsEl = document.getElementById("searchResults");
+      if (!resultsEl) return;
+      if (!q || q.length < 2) { resultsEl.innerHTML = ""; return; }
+
+      const results = [];
+      records.forEach(r => {
+        const board = (r.administration.board || "") + " " + (r.administration.coaches || "") + " " + (r.administration.notes || "");
+        if (board.toLowerCase().includes(q)) {
+          results.push({ type: "record", year: r.year, label: r.year + " — Administration", detail: board.substring(0, 120) + "…", page: "records" });
+        }
+        (r.events || []).forEach(ev => {
+          if ((ev.title + " " + ev.detail).toLowerCase().includes(q)) {
+            results.push({ type: "event", year: r.year, label: r.year + " — " + ev.title, detail: (ev.detail || "").substring(0, 120) + "…", page: "records" });
+          }
+        });
+      });
+      const coachList = typeof coaches !== "undefined" ? coaches : [];
+      coachList.forEach(c => {
+        if (c.name.toLowerCase().includes(q)) {
+          results.push({ type: "coach", year: Math.min(...c.years), label: c.name, detail: c.role + " · " + c.years.length + " years active", page: "coaches" });
+        }
+      });
+
+      if (results.length === 0) { resultsEl.innerHTML = '<div class="search-empty">No results found for <strong>' + q + '</strong></div>'; return; }
+
+      const grouped = {};
+      results.forEach(r => { if (!grouped[r.type]) grouped[r.type] = []; grouped[r.type].push(r); });
+      const typeLabels = { record: "Administration", event: "Events", coach: "Coaches" };
+      let html = '<p class="search-count">' + results.length + ' result' + (results.length !== 1 ? "s" : "") + ' for <strong>' + q + '</strong></p>';
+      Object.entries(grouped).forEach(([type, items]) => {
+        html += '<div class="search-group"><div class="search-group__label">' + (typeLabels[type] || type) + ' (' + items.length + ')</div>';
+        items.slice(0, 15).forEach(item => {
+          html += '<div class="search-result" data-nav="' + item.page + '"><div class="search-result__label">' + item.label + '</div><div class="search-result__detail">' + item.detail + '</div></div>';
+        });
+        if (items.length > 15) html += '<div class="search-more">+' + (items.length - 15) + ' more</div>';
+        html += '</div>';
+      });
+      resultsEl.innerHTML = html;
+
+      // Bind result clicks
+      resultsEl.querySelectorAll(".search-result").forEach(el => {
+        el.addEventListener("click", () => { navigate(el.dataset.nav); });
+      });
+    });
+  }
+
+  // Inline-link buttons (used in players page etc.)
+  document.querySelectorAll(".inline-link").forEach(btn => {
+    btn.addEventListener("click", () => navigate(btn.dataset.nav));
+  });
   document.querySelectorAll(".rp-pill").forEach(p => {
     p.addEventListener("click", () => {
       state.decade = p.dataset.decade;
