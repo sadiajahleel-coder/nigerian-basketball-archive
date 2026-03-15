@@ -1602,8 +1602,8 @@ function landingPage() {
 }
 
 // ── SIGNUP ───────────────────────────────────────────────
-const FORM_URL = "https://script.google.com/macros/s/AKfycbxDj3PDbK6nLQkK0HnoTaFv8H7cVSqMmwe16eb3nY3UoKj8BJq9A2mR-cz2z73DHTNd/exec";
-const CONTRIB_URL = "https://script.google.com/macros/s/AKfycbxDj3PDbK6nLQkK0HnoTaFv8H7cVSqMmwe16eb3nY3UoKj8BJq9A2mR-cz2z73DHTNd/exec";
+const FORM_URL = "https://script.google.com/macros/s/AKfycbzoFdbSCNcPhGTOwz8m8OznCFpbgEWLjef2GnkfWpJ8I4tZPsrewjFNpHTGFeFClbgf/exec";
+const CONTRIB_URL = "https://script.google.com/macros/s/AKfycbzoFdbSCNcPhGTOwz8m8OznCFpbgEWLjef2GnkfWpJ8I4tZPsrewjFNpHTGFeFClbgf/exec";
 
 function signupPage() {
   return `
@@ -2293,12 +2293,15 @@ function bindEvents() {
       btn.disabled = true;
 
       try {
-        await fetch(CONTRIB_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ formType: "contribution", contributorName: name, email, type, year, details, fileLink }),
-          mode: "no-cors"
-        });
+        const contribData = new FormData();
+        contribData.append("formType", "contribution");
+        contribData.append("contributorName", name);
+        contribData.append("email", email);
+        contribData.append("type", type);
+        contribData.append("year", year);
+        contribData.append("details", details);
+        contribData.append("fileLink", fileLink);
+        await fetch(CONTRIB_URL, { method: "POST", body: contribData, mode: "no-cors" });
         contribForm.style.display = "none";
         document.getElementById("cf-success").style.display = "flex";
       } catch (err) {
@@ -2336,12 +2339,13 @@ function bindEvents() {
       btn.disabled = true;
 
       try {
-        await fetch(FORM_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, organisation: org, role }),
-          mode: "no-cors"
-        });
+        const signupData = new FormData();
+        signupData.append("formType", "signup");
+        signupData.append("name", name);
+        signupData.append("email", email);
+        signupData.append("organisation", org);
+        signupData.append("role", role);
+        await fetch(FORM_URL, { method: "POST", body: signupData, mode: "no-cors" });
         grantAccess();
         form.style.display = "none";
         document.getElementById("sf-success").style.display = "flex";
