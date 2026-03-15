@@ -1022,7 +1022,6 @@ function nav() {
         <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
-        <button class="nav__link ${page==="search"?"active":""}" data-nav="search">Search</button>
         <button class="nav__link ${page==="players"?"active":""}" data-nav="players">Players</button>
         <button class="nav__link ${page==="coaches"?"active":""}" data-nav="coaches">Coaches</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
