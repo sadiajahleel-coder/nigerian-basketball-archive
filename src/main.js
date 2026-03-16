@@ -1019,13 +1019,6 @@ function nav() {
       <div class="nav__links">
         <button class="nav__link ${page==="home"?"active":""}" data-nav="home">Home</button>
         <button class="nav__link ${page==="records"?"active":""}" data-nav="records">Records</button>
-        <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
-        <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
-        <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
-        <button class="nav__link ${page==="bb4p"?"active":""}" data-nav="bb4p">BB4P</button>
-        <button class="nav__link ${page==="press"?"active":""}" data-nav="press">Press</button>
-        <button class="nav__link ${page==="players"?"active":""}" data-nav="players">Players</button>
-        <button class="nav__link ${page==="coaches"?"active":""}" data-nav="coaches">Coaches</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
@@ -1164,33 +1157,49 @@ function homePage() {
     </div>
 
     <div class="section-rule">
-      <span class="section-rule__title">More from the Archive</span>
+      <span class="section-rule__title">Explore the Archive</span>
       <div class="section-rule__line"></div>
     </div>
-    <div class="feature-strip">
-      <div class="feature-item" data-nav="analysis">
-        <div class="feature-item__icon feature-item__icon--orange">📝</div>
-        <div class="feature-item__title">The Underlying Issues</div>
-        <div class="feature-item__desc">A frank account of the politics that shaped the NBBF — from U.K. Umar through Tijjani Umar to Musa Kida.</div>
-        <div class="feature-item__count">Read the full account →</div>
+    <div class="home-explore-grid">
+      <div class="hex-card" data-nav="analysis">
+        <div class="hex-card__icon">📝</div>
+        <div class="hex-card__title">Analysis</div>
+        <div class="hex-card__desc">Editorial notes and the underlying politics that shaped the NBBF.</div>
       </div>
-      <div class="feature-item" data-nav="constitution">
-        <div class="feature-item__icon feature-item__icon--green">⚖️</div>
-        <div class="feature-item__title">NBBF Constitution</div>
-        <div class="feature-item__desc">The full constitution of the Nigeria Basketball Federation — all 18 articles.</div>
-        <div class="feature-item__count">Read the constitution →</div>
+      <div class="hex-card" data-nav="constitution">
+        <div class="hex-card__icon">⚖️</div>
+        <div class="hex-card__title">Constitution</div>
+        <div class="hex-card__desc">The full NBBF constitution — all 18 articles.</div>
       </div>
-      <div class="feature-item" data-nav="about">
-        <div class="feature-item__icon feature-item__icon--blue">ℹ️</div>
-        <div class="feature-item__title">About This Archive</div>
-        <div class="feature-item__desc">Compiled by Coach OBJ — Oliver B. Johnson — Nigeria's National Basketball Coach from 1971.</div>
-        <div class="feature-item__count">Read about the archive →</div>
+      <div class="hex-card" data-nav="coaches">
+        <div class="hex-card__icon">🏀</div>
+        <div class="hex-card__title">Coaches</div>
+        <div class="hex-card__desc">104 coaches across 56 years with international results.</div>
       </div>
-      <div class="feature-item" data-nav="records">
-        <div class="feature-item__icon feature-item__icon--red">📅</div>
-        <div class="feature-item__title">Milestones</div>
-        <div class="feature-item__desc">Historic firsts, landmark moments and the defining achievements of Nigerian basketball.</div>
-        <div class="feature-item__count">Explore milestones →</div>
+      <div class="hex-card" data-nav="players">
+        <div class="hex-card__icon">⭐</div>
+        <div class="hex-card__title">Players</div>
+        <div class="hex-card__desc">Notable players named in the archive — from pioneers to D'Tigers.</div>
+      </div>
+      <div class="hex-card" data-nav="bb4p">
+        <div class="hex-card__icon">🕊️</div>
+        <div class="hex-card__title">BB4P</div>
+        <div class="hex-card__desc">Coach OBJ's Basketball for Peace NGO across 16 states.</div>
+      </div>
+      <div class="hex-card" data-nav="press">
+        <div class="hex-card__icon">📰</div>
+        <div class="hex-card__title">Press 1989</div>
+        <div class="hex-card__desc">5 newspaper clippings — the only journalism preserved in the archive.</div>
+      </div>
+      <div class="hex-card" data-nav="about">
+        <div class="hex-card__icon">ℹ️</div>
+        <div class="hex-card__title">About</div>
+        <div class="hex-card__desc">Compiled by Coach OBJ — Oliver B. Johnson — from 1971.</div>
+      </div>
+      <div class="hex-card" data-nav="contribute">
+        <div class="hex-card__icon">✏️</div>
+        <div class="hex-card__title">Contribute</div>
+        <div class="hex-card__desc">Add records, corrections or your own story to the archive.</div>
       </div>
     </div>
 
@@ -1251,7 +1260,7 @@ function homePage() {
     <div class="about-strip">
       <div>
         <div class="about-strip__title">Compiled by Coach OBJ</div>
-        <div class="about-strip__text">This archive was compiled by <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Oliver B. Johnson — Coach OBJ</a> — Nigeria's National Basketball Coach from 1971. It documents the full 56-year history of the game in Nigeria, from the founding of NABBA to 2020. Edited and built by Halima Abdul.</div>
+        <div class="about-strip__text">This archive was compiled by <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Oliver B. Johnson — Coach OBJ</a> — Nigeria's National Basketball Coach from 1971 and founder of <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Basketball for Peace (BB4P)</a>, which has established Peace Zones in 16 Nigerian states. Edited and built by Halima Abdul.</div>
       </div>
       <button class="about-strip__btn" data-nav="about">Read More</button>
     </div>
@@ -1594,36 +1603,109 @@ function landingPage() {
       </div>
     </div>
 
-    <div class="landing__teaser">
-      <div class="landing__teaser-inner">
-        <h2 class="landing__teaser-title">What the Archive Contains</h2>
-        <div class="landing__teaser-grid">
-          <div class="landing__teaser-item">
-            <div class="landing__teaser-icon">👤</div>
-            <div class="landing__teaser-label">NBBF Leadership</div>
-            <div class="landing__teaser-desc">Every chairman, president, secretary and board member — year by year from 1964.</div>
+    <div class="landing__sections">
+
+      <div class="lsec">
+        <div class="lsec__inner">
+          <div class="lsec__head">
+            <div>
+              <h2 class="lsec__title">What the Archive Contains</h2>
+              <p class="lsec__sub">Records, analysis, press, people and more — all in one place.</p>
+            </div>
           </div>
-          <div class="landing__teaser-item">
-            <div class="landing__teaser-icon">🏆</div>
-            <div class="landing__teaser-label">Tournaments</div>
-            <div class="landing__teaser-desc">National League, Sports Festival, Premier League and all Cup competitions.</div>
+          <div class="lsec__grid4">
+            <div class="lsec__card"><div class="lsec__icon">👤</div><div class="lsec__card-title">NBBF Leadership</div><div class="lsec__card-desc">Every chairman, president, secretary and board member — year by year from 1964.</div></div>
+            <div class="lsec__card"><div class="lsec__icon">🏆</div><div class="lsec__card-title">Tournaments</div><div class="lsec__card-desc">National League, Sports Festival, Premier League and all Cup competitions.</div></div>
+            <div class="lsec__card"><div class="lsec__icon">🌍</div><div class="lsec__card-title">International</div><div class="lsec__card-desc">AfroBasket, Olympics, Commonwealth Games and all FIBA events.</div></div>
+            <div class="lsec__card"><div class="lsec__icon">📋</div><div class="lsec__card-title">Analysis</div><div class="lsec__card-desc">Editorial notes and the underlying politics that shaped Nigerian basketball.</div></div>
           </div>
-          <div class="landing__teaser-item">
-            <div class="landing__teaser-icon">🌍</div>
-            <div class="landing__teaser-label">International</div>
-            <div class="landing__teaser-desc">AfroBasket, Olympics, Commonwealth Games and all FIBA events.</div>
+          <div class="lsec__cta-row">
+            <p>Access is free. Submit your details to get in.</p>
+            <button class="landing__cta landing__cta--dark" id="landingCta2">Request Access Now</button>
           </div>
-          <div class="landing__teaser-item">
-            <div class="landing__teaser-icon">📰</div>
-            <div class="landing__teaser-label">Press &amp; Analysis</div>
-            <div class="landing__teaser-desc">1989 newspaper clippings, editorial notes and a frank account of the politics that shaped Nigerian basketball.</div>
-          </div>
-        </div>
-        <div class="landing__teaser-cta">
-          <p>Access is free. Submit your details to get in.</p>
-          <button class="landing__cta landing__cta--dark" id="landingCta2">Request Access Now</button>
         </div>
       </div>
+
+      <div class="lsec lsec--green">
+        <div class="lsec__inner">
+          <div class="lsec__head">
+            <div>
+              <h2 class="lsec__title lsec__title--light">Basketball for Peace</h2>
+              <p class="lsec__sub lsec__sub--light">Coach OBJ&apos;s NGO · Founded 2003</p>
+            </div>
+            <button class="lsec__btn" id="homeBb4p">Learn More</button>
+          </div>
+          <div class="lsec__grid4">
+            <div class="lsec__stat-card"><div class="lsec__stat-num">50+</div><div class="lsec__stat-label">Peace Zones</div></div>
+            <div class="lsec__stat-card"><div class="lsec__stat-num">16</div><div class="lsec__stat-label">Nigerian States</div></div>
+            <div class="lsec__stat-card"><div class="lsec__stat-num">30+</div><div class="lsec__stat-label">LGAs Reached</div></div>
+            <div class="lsec__stat-card"><div class="lsec__stat-num">2003</div><div class="lsec__stat-label">Founded</div></div>
+          </div>
+          <p class="lsec__body--light">BB4P uses basketball as an urgent tool to stop violent conflict among youth in their local communities — establishing affordable Peace Zones in communities of conflict across Nigeria.</p>
+        </div>
+      </div>
+
+      <div class="lsec">
+        <div class="lsec__inner">
+          <div class="lsec__head">
+            <div>
+              <h2 class="lsec__title">Press — 1989</h2>
+              <p class="lsec__sub">5 newspaper clippings from the Daily Times, Sunday Herald, The Punch &amp; The Democrat</p>
+            </div>
+            <button class="lsec__btn lsec__btn--dark" id="homePress">Read All</button>
+          </div>
+          <div class="lsec__press-preview">
+            <div class="lsec__press-card"><div class="lsec__press-hl">Elephant Girls Clinch Dan Musa&apos;s Cup</div><div class="lsec__press-meta">Sunday Herald · 9 April 1989</div></div>
+            <div class="lsec__press-card"><div class="lsec__press-hl">NABBA&apos;s Plan for Barcelona Olympics</div><div class="lsec__press-meta">The Democrat · 19 April 1989</div></div>
+            <div class="lsec__press-card"><div class="lsec__press-hl">NABBA to Smile to the Bank</div><div class="lsec__press-meta">The Punch · 12 April 1989</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lsec lsec--cream">
+        <div class="lsec__inner">
+          <div class="lsec__head">
+            <div>
+              <h2 class="lsec__title">Coaches</h2>
+              <p class="lsec__sub">104 coaches across 56 years — with their international results</p>
+            </div>
+            <button class="lsec__btn lsec__btn--dark" id="homeCoaches">View All Coaches</button>
+          </div>
+          <div class="lsec__coaches-row">
+            <div class="lsec__coach-pill">Coach OBJ (Oliver B. Johnson)</div>
+            <div class="lsec__coach-pill">Ayo Bakare</div>
+            <div class="lsec__coach-pill">Sani Ahmed</div>
+            <div class="lsec__coach-pill">Scott Nnaji</div>
+            <div class="lsec__coach-pill">Agboola Pinheiro</div>
+            <div class="lsec__coach-pill">Peter Ahmedu</div>
+            <div class="lsec__coach-pill">Ganiyu Otenigbagbe</div>
+            <div class="lsec__coach-pill">Masai Ujiri</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lsec">
+        <div class="lsec__inner">
+          <div class="lsec__head">
+            <div>
+              <h2 class="lsec__title">Players</h2>
+              <p class="lsec__sub">Notable players named in the archive — from pioneers to D&apos;Tigers and D&apos;Tigress</p>
+            </div>
+            <button class="lsec__btn lsec__btn--dark" id="homePlayers">View All Players</button>
+          </div>
+          <div class="lsec__coaches-row">
+            <div class="lsec__coach-pill lsec__coach-pill--orange">Hakeem Olajuwon</div>
+            <div class="lsec__coach-pill lsec__coach-pill--orange">Olumide Oyedeji</div>
+            <div class="lsec__coach-pill">Masai Ujiri</div>
+            <div class="lsec__coach-pill">Ike Diogu</div>
+            <div class="lsec__coach-pill">Ejike Ugboaja</div>
+            <div class="lsec__coach-pill">Uche Nebedum</div>
+            <div class="lsec__coach-pill">Isah Umar</div>
+            <div class="lsec__coach-pill">Benjamin Uzoh</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <footer class="footer">
@@ -2414,6 +2496,10 @@ function bindEvents() {
   if (landingContribute) landingContribute.addEventListener("click", () => { page = "contribute"; pushHistory("contribute", {}); render(); window.scrollTo(0,0); });
   const timelineCta = document.getElementById("timelineCta");
   if (timelineCta) timelineCta.addEventListener("click", () => { page = "signup"; pushHistory("signup", {}); render(); window.scrollTo(0,0); });
+  [["homeBb4p","bb4p"],["homePress","press"],["homeCoaches","coaches"],["homePlayers","players"]].forEach(function(pair) {
+    const el = document.getElementById(pair[0]);
+    if (el) el.addEventListener("click", function() { page = pair[1]; pushHistory(pair[1], {}); render(); window.scrollTo(0,0); });
+  });
 
   // Contribution form
   const contribForm = document.getElementById("contribForm");
