@@ -1,9 +1,9 @@
-// Google Apps Script — paste into script.google.com and deploy as web app
-// Allow: "Anyone" to execute
+// Google Apps Script — paste ALL of this into script.google.com
+// After saving, go to Deploy → Manage Deployments → edit → New Version → Deploy
 
 const SHEET_ID = SpreadsheetApp.getActiveSpreadsheet();
 
-function doPost(e) {
+function handleRequest(e) {
   try {
     const params = e.parameter;
     const formType = params.formType;
@@ -26,6 +26,9 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  return ContentService.createTextOutput("Nigeria Basketball Archive — Form endpoint active.")
-    .setMimeType(ContentService.MimeType.TEXT);
+  return handleRequest(e);
+}
+
+function doPost(e) {
+  return handleRequest(e);
 }

@@ -2514,15 +2514,8 @@ function bindEvents() {
       btn.disabled = true;
 
       try {
-        const contribData = new URLSearchParams();
-        contribData.append("formType", "contribution");
-        contribData.append("contributorName", name);
-        contribData.append("email", email);
-        contribData.append("type", type);
-        contribData.append("year", year);
-        contribData.append("details", details);
-        contribData.append("fileLink", fileLink);
-        await fetch(CONTRIB_URL, { method: "POST", body: contribData, mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" } });
+        const contribParams = new URLSearchParams({ formType: "contribution", contributorName: name, email, type, year, details, fileLink });
+        await fetch(CONTRIB_URL + "?" + contribParams.toString(), { method: "GET", mode: "no-cors" });
         contribForm.style.display = "none";
         document.getElementById("cf-success").style.display = "flex";
       } catch (err) {
@@ -2560,13 +2553,8 @@ function bindEvents() {
       btn.disabled = true;
 
       try {
-        const signupData = new URLSearchParams();
-        signupData.append("formType", "signup");
-        signupData.append("name", name);
-        signupData.append("email", email);
-        signupData.append("organisation", org);
-        signupData.append("role", role);
-        await fetch(FORM_URL, { method: "POST", body: signupData, mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" } });
+        const signupParams = new URLSearchParams({ formType: "signup", name, email, organisation: org, role });
+        await fetch(FORM_URL + "?" + signupParams.toString(), { method: "GET", mode: "no-cors" });
         grantAccess();
         form.style.display = "none";
         document.getElementById("sf-success").style.display = "flex";
