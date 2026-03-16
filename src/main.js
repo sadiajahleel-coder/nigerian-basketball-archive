@@ -1164,14 +1164,17 @@ function homePage() {
         <div class="hex-card__title">Analysis &amp; Notes</div>
         <div class="hex-card__desc">Editorial notes on governance, coaching tenure, and the underlying issues in Nigerian basketball.</div>
       </div>
+      <div class="hex-card" data-nav="bb4p">
+        <div class="hex-card__title">BB4P</div>
+        <div class="hex-card__desc">Coach OBJ's Basketball for Peace NGO across 16 states.</div>
+      </div>
       <div class="hex-card" data-nav="constitution">
         <div class="hex-card__title">Constitution</div>
         <div class="hex-card__desc">The full NBBF constitution — all 18 articles.</div>
       </div>
-
-      <div class="hex-card" data-nav="bb4p">
-        <div class="hex-card__title">BB4P</div>
-        <div class="hex-card__desc">Coach OBJ's Basketball for Peace NGO across 16 states.</div>
+      <div class="hex-card" data-nav="players">
+        <div class="hex-card__title">Players</div>
+        <div class="hex-card__desc">Notable players named in the archive — from pioneers to D'Tigers and D'Tigress.</div>
       </div>
       <div class="hex-card" data-nav="press">
         <div class="hex-card__title">Press 1989</div>
@@ -1180,10 +1183,6 @@ function homePage() {
       <div class="hex-card" data-nav="testimonies">
         <div class="hex-card__title">Testimonies</div>
         <div class="hex-card__desc">Personal accounts from Isah Umar and Uche Nebedum — in their own words.</div>
-      </div>
-      <div class="hex-card" data-nav="players">
-        <div class="hex-card__title">Players</div>
-        <div class="hex-card__desc">Notable players named in the archive — from pioneers to D'Tigers and D'Tigress.</div>
       </div>
     </div>
 
