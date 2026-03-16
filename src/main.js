@@ -946,13 +946,13 @@ let hasAccess = false;
 
 function checkAccess() {
   try {
-    hasAccess = sessionStorage.getItem("nba_access") === "granted";
+    hasAccess = localStorage.getItem("nba_access") === "granted";
   } catch(e) {
     hasAccess = false;
   }
 }
 function grantAccess() {
-  try { sessionStorage.setItem("nba_access", "granted"); } catch(e) {}
+  try { localStorage.setItem("nba_access", "granted"); } catch(e) {}
   hasAccess = true;
 }
 checkAccess();
@@ -2514,7 +2514,7 @@ function bindEvents() {
       btn.disabled = true;
 
       try {
-        const contribData = new FormData();
+        const contribData = new URLSearchParams();
         contribData.append("formType", "contribution");
         contribData.append("contributorName", name);
         contribData.append("email", email);
@@ -2522,7 +2522,7 @@ function bindEvents() {
         contribData.append("year", year);
         contribData.append("details", details);
         contribData.append("fileLink", fileLink);
-        await fetch(CONTRIB_URL, { method: "POST", body: contribData, mode: "no-cors" });
+        await fetch(CONTRIB_URL, { method: "POST", body: contribData, mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" } });
         contribForm.style.display = "none";
         document.getElementById("cf-success").style.display = "flex";
       } catch (err) {
@@ -2560,13 +2560,13 @@ function bindEvents() {
       btn.disabled = true;
 
       try {
-        const signupData = new FormData();
+        const signupData = new URLSearchParams();
         signupData.append("formType", "signup");
         signupData.append("name", name);
         signupData.append("email", email);
         signupData.append("organisation", org);
         signupData.append("role", role);
-        await fetch(FORM_URL, { method: "POST", body: signupData, mode: "no-cors" });
+        await fetch(FORM_URL, { method: "POST", body: signupData, mode: "no-cors", headers: { "Content-Type": "application/x-www-form-urlencoded" } });
         grantAccess();
         form.style.display = "none";
         document.getElementById("sf-success").style.display = "flex";
