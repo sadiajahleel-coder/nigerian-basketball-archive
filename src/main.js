@@ -1161,21 +1161,14 @@ function homePage() {
     </div>
     <div class="home-explore-grid">
       <div class="hex-card" data-nav="analysis">
-        <div class="hex-card__title">Analysis</div>
-        <div class="hex-card__desc">Editorial notes and the underlying politics that shaped the NBBF.</div>
+        <div class="hex-card__title">Analysis &amp; Notes</div>
+        <div class="hex-card__desc">Editorial notes on governance, coaching tenure, and the underlying issues in Nigerian basketball.</div>
       </div>
       <div class="hex-card" data-nav="constitution">
         <div class="hex-card__title">Constitution</div>
         <div class="hex-card__desc">The full NBBF constitution — all 18 articles.</div>
       </div>
-      <div class="hex-card" data-nav="coaches">
-        <div class="hex-card__title">Coaches</div>
-        <div class="hex-card__desc">104 coaches across 56 years with international results.</div>
-      </div>
-      <div class="hex-card" data-nav="players">
-        <div class="hex-card__title">Players</div>
-        <div class="hex-card__desc">Notable players named in the archive — from pioneers to D'Tigers.</div>
-      </div>
+
       <div class="hex-card" data-nav="bb4p">
         <div class="hex-card__title">BB4P</div>
         <div class="hex-card__desc">Coach OBJ's Basketball for Peace NGO across 16 states.</div>
