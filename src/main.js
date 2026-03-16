@@ -1019,7 +1019,7 @@ function nav() {
       <div class="nav__links">
         <button class="nav__link ${page==="home"?"active":""}" data-nav="home">Home</button>
         <button class="nav__link ${page==="records"?"active":""}" data-nav="records">Records</button>
-        <button class="nav__link ${page==="testimonies"?"active":""}" data-nav="testimonies">Testimonies</button>
+        <button class="nav__link ${page==="coaches"?"active":""}" data-nav="coaches">Coaches</button>
         <button class="nav__link ${page==="elections"?"active":""}" data-nav="elections">Election Guidelines</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
@@ -1181,8 +1181,10 @@ function homePage() {
         <div class="hex-card__title">Testimonies</div>
         <div class="hex-card__desc">Personal accounts from Isah Umar and Uche Nebedum — in their own words.</div>
       </div>
-
-
+      <div class="hex-card" data-nav="players">
+        <div class="hex-card__title">Players</div>
+        <div class="hex-card__desc">Notable players named in the archive — from pioneers to D'Tigers and D'Tigress.</div>
+      </div>
     </div>
 
     <div class="about-strip">
