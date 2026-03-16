@@ -1019,6 +1019,7 @@ function nav() {
       <div class="nav__links">
         <button class="nav__link ${page==="home"?"active":""}" data-nav="home">Home</button>
         <button class="nav__link ${page==="records"?"active":""}" data-nav="records">Records</button>
+        <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
     </div>
@@ -1184,10 +1185,7 @@ function homePage() {
         <div class="hex-card__title">About</div>
         <div class="hex-card__desc">Compiled by Coach OBJ — Oliver B. Johnson — from 1971.</div>
       </div>
-      <div class="hex-card" data-nav="contribute">
-        <div class="hex-card__title">Contribute</div>
-        <div class="hex-card__desc">Add records, corrections or your own story to the archive.</div>
-      </div>
+
     </div>
 
     <div class="about-strip">
