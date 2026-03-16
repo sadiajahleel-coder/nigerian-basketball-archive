@@ -1019,7 +1019,6 @@ function nav() {
       <div class="nav__links">
         <button class="nav__link ${page==="home"?"active":""}" data-nav="home">Home</button>
         <button class="nav__link ${page==="records"?"active":""}" data-nav="records">Records</button>
-        <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
     </div>
@@ -1131,25 +1130,21 @@ function homePage() {
     </div>
     <div class="feature-strip">
       <div class="feature-item" data-nav="records">
-        <div class="feature-item__icon feature-item__icon--green">👤</div>
         <div class="feature-item__title">NBBF Leadership</div>
         <div class="feature-item__desc">Every chairman, president, secretary and board member, year by year from 1964.</div>
         <div class="feature-item__count">56 years of boards →</div>
       </div>
       <div class="feature-item" data-nav="records">
-        <div class="feature-item__icon feature-item__icon--orange">🏆</div>
         <div class="feature-item__title">Tournaments</div>
         <div class="feature-item__desc">National League, Sports Festival, Premier League, Cup competitions and more.</div>
         <div class="feature-item__count">Explore tournaments →</div>
       </div>
       <div class="feature-item" data-nav="records">
-        <div class="feature-item__icon feature-item__icon--blue">🌍</div>
         <div class="feature-item__title">International</div>
         <div class="feature-item__desc">AfroBasket, Olympics, Commonwealth Games, FIBA — Nigeria on the world stage.</div>
         <div class="feature-item__count">Explore international →</div>
       </div>
       <div class="feature-item" data-nav="analysis">
-        <div class="feature-item__icon feature-item__icon--red">📋</div>
         <div class="feature-item__title">Analysis & Notes</div>
         <div class="feature-item__desc">Editorial notes on governance, coaching tenure, and the underlying issues in Nigerian basketball.</div>
         <div class="feature-item__count">Read analysis →</div>
@@ -1162,98 +1157,36 @@ function homePage() {
     </div>
     <div class="home-explore-grid">
       <div class="hex-card" data-nav="analysis">
-        <div class="hex-card__icon">📝</div>
         <div class="hex-card__title">Analysis</div>
         <div class="hex-card__desc">Editorial notes and the underlying politics that shaped the NBBF.</div>
       </div>
       <div class="hex-card" data-nav="constitution">
-        <div class="hex-card__icon">⚖️</div>
         <div class="hex-card__title">Constitution</div>
         <div class="hex-card__desc">The full NBBF constitution — all 18 articles.</div>
       </div>
       <div class="hex-card" data-nav="coaches">
-        <div class="hex-card__icon">🏀</div>
         <div class="hex-card__title">Coaches</div>
         <div class="hex-card__desc">104 coaches across 56 years with international results.</div>
       </div>
       <div class="hex-card" data-nav="players">
-        <div class="hex-card__icon">⭐</div>
         <div class="hex-card__title">Players</div>
         <div class="hex-card__desc">Notable players named in the archive — from pioneers to D'Tigers.</div>
       </div>
       <div class="hex-card" data-nav="bb4p">
-        <div class="hex-card__icon">🕊️</div>
         <div class="hex-card__title">BB4P</div>
         <div class="hex-card__desc">Coach OBJ's Basketball for Peace NGO across 16 states.</div>
       </div>
       <div class="hex-card" data-nav="press">
-        <div class="hex-card__icon">📰</div>
         <div class="hex-card__title">Press 1989</div>
         <div class="hex-card__desc">5 newspaper clippings — the only journalism preserved in the archive.</div>
       </div>
       <div class="hex-card" data-nav="about">
-        <div class="hex-card__icon">ℹ️</div>
         <div class="hex-card__title">About</div>
         <div class="hex-card__desc">Compiled by Coach OBJ — Oliver B. Johnson — from 1971.</div>
       </div>
       <div class="hex-card" data-nav="contribute">
-        <div class="hex-card__icon">✏️</div>
         <div class="hex-card__title">Contribute</div>
         <div class="hex-card__desc">Add records, corrections or your own story to the archive.</div>
-      </div>
-    </div>
-
-    <div class="section-rule">
-      <span class="section-rule__title">Contribute to the Archive</span>
-      <div class="section-rule__line"></div>
-    </div>
-    <div class="contribute-section">
-      <div class="contribute-section__left">
-        <p class="contribute-section__intro">This archive is a living document. If you were part of Nigerian basketball — as a player, coach, official, journalist or fan — your records, photographs and stories belong here. Every contribution is reviewed, verified and credited by name.</p>
-        <div class="contribute-ways">
-          <div class="contribute-way">
-            <div class="contribute-way__icon">📄</div>
-            <div>
-              <div class="contribute-way__title">Missing Records</div>
-              <div class="contribute-way__desc">Fill gaps in years with incomplete data — board members, coaches, tournament results.</div>
-            </div>
-          </div>
-          <div class="contribute-way">
-            <div class="contribute-way__icon">✏️</div>
-            <div>
-              <div class="contribute-way__title">Corrections</div>
-              <div class="contribute-way__desc">Flag errors in existing records and provide the correct information with a source.</div>
-            </div>
-          </div>
-          <div class="contribute-way">
-            <div class="contribute-way__icon">📷</div>
-            <div>
-              <div class="contribute-way__title">Photos & Documents</div>
-              <div class="contribute-way__desc">Newspaper clippings, match photographs, official documents and programmes.</div>
-            </div>
-          </div>
-          <div class="contribute-way">
-            <div class="contribute-way__icon">🎙️</div>
-            <div>
-              <div class="contribute-way__title">Personal Testimony</div>
-              <div class="contribute-way__desc">Your own story in Nigerian basketball — first-hand accounts from those who were there.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="contribute-section__right">
-        <div class="contribute-cta-card">
-          <h3 class="contribute-cta-card__title">What We Need Most</h3>
-          <ul class="contribute-cta-card__list">
-            <li>Records from the early years — 1964 to 1979</li>
-            <li>State-level tournament results</li>
-            <li>Newspaper clippings and match photos</li>
-            <li>First-hand accounts from players and coaches</li>
-            <li>Photos of NBBF board meetings and ceremonies</li>
-          </ul>
-          <button class="contribute-cta-card__btn" data-nav="contribute">Submit a Contribution</button>
-          <p class="contribute-cta-card__note">All contributors are credited by name in the archive.</p>
-        </div>
       </div>
     </div>
 
