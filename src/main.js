@@ -1469,12 +1469,12 @@ function aboutPage() {
 function landingPage() {
   return `
   <div class="landing">
+
     <div class="landing__hero">
       <div class="landing__hero-inner">
-        <p class="landing__eyebrow">NBBF — Nigeria Basketball Federation · Est. 1964</p>
-        <h1 class="landing__title">Nigeria Basketball Archive</h1>
-        <p class="landing__subtitle">56 Years of Records. <em>Documented.</em></p>
-        <p class="landing__desc">The complete record of every chairman, coach, tournament result, and international competition in Nigerian basketball history — from the founding of NABBA in 1964 to 2020. Compiled by <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Coach OBJ — Oliver B. Johnson</a>.</p>
+        <div class="landing__eyebrow-pill">1964 — 2020 &nbsp;·&nbsp; 56 Years</div>
+        <h1 class="landing__title">Nigeria Basketball<br><em>The Official Archive</em></h1>
+        <p class="landing__desc">The complete reference record of Nigerian basketball — every chairman, coach, tournament result, and international competition. Compiled by <a href="https://www.bb4p.org" target="_blank" class="credit-link credit-link--light">Coach OBJ — Oliver B. Johnson</a>.</p>
         <div class="landing__cta-group">
           <button class="landing__cta" id="landingCta">Request Access</button>
           <button class="landing__cta landing__cta--outline" id="landingContribute">Contribute to the Archive</button>
@@ -1495,62 +1495,95 @@ function landingPage() {
         </div>
         <p class="landing__credit">Edited &amp; Built by <strong><a href="https://workwithsadiasfactory.netlify.app" target="_blank" class="credit-link">Halima Abdul</a></strong></p>
       </div>
-      <div class="landing__stats">
-        <div class="landing__stat"><span class="landing__stat-num">56</span><span class="landing__stat-label">Years Documented</span></div>
-        <div class="landing__stat"><span class="landing__stat-num">57</span><span class="landing__stat-label">Year Records</span></div>
-        <div class="landing__stat"><span class="landing__stat-num">340+</span><span class="landing__stat-label">Events Recorded</span></div>
-        <div class="landing__stat"><span class="landing__stat-num">1964</span><span class="landing__stat-label">Founded</span></div>
+    </div>
+
+    <div class="landing__stats-strip">
+      <div class="landing__stat-big">
+        <span class="landing__stat-num">56</span>
+        <span class="landing__stat-label">Years Documented</span>
+        <span class="landing__stat-sub">1964 — 2020</span>
+      </div>
+      <div class="landing__stat-sm">
+        <span class="landing__stat-num">57</span>
+        <span class="landing__stat-label">Year Records</span>
+        <span class="landing__stat-sub">Complete entries</span>
+      </div>
+      <div class="landing__stat-sm">
+        <span class="landing__stat-num">104</span>
+        <span class="landing__stat-label">Coaches</span>
+        <span class="landing__stat-sub">Head &amp; assistant</span>
+      </div>
+      <div class="landing__stat-sm">
+        <span class="landing__stat-num">340+</span>
+        <span class="landing__stat-label">Events Recorded</span>
+        <span class="landing__stat-sub">Tournaments &amp; more</span>
+      </div>
+      <div class="landing__stat-sm">
+        <span class="landing__stat-num">18</span>
+        <span class="landing__stat-label">NBBF Articles</span>
+        <span class="landing__stat-sub">Constitution</span>
       </div>
     </div>
+
     <div class="landing__milestones">
       <div class="landing__milestones-inner">
         <h2 class="landing__timeline-title">Key Moments from the Archive</h2>
         <p class="landing__timeline-sub">56 years of Nigerian basketball history</p>
         <div class="milestones-grid">
-          <div class="milestone-card">
+          <div class="milestone-card milestone-card--highlight">
             <div class="milestone-card__year">1964</div>
             <div class="milestone-card__event">Nigeria Basketball Founded</div>
-            <div class="milestone-card__detail">Mr. Abraham Ordia appoints Moses Omiumu Imana as the first National Chairman of Nigeria Basketball.</div>
+            <div class="milestone-card__detail">Moses Omiumu Imana appointed first National Chairman.</div>
           </div>
           <div class="milestone-card">
             <div class="milestone-card__year">1965</div>
-            <div class="milestone-card__event">NABBA Officially Inaugurated</div>
-            <div class="milestone-card__detail">The Nigeria Amateur Basketball Association is formally established in Lagos, September 8th.</div>
+            <div class="milestone-card__event">NABBA Inaugurated</div>
+            <div class="milestone-card__detail">Nigeria Amateur Basketball Association established in Lagos.</div>
           </div>
-          <div class="milestone-card milestone-card--highlight">
+          <div class="milestone-card">
             <div class="milestone-card__year">1971</div>
-            <div class="milestone-card__event">Coach OBJ Appointed National Coach</div>
-            <div class="milestone-card__detail">Oliver B. Johnson begins his legendary career as Nigeria's National Basketball Coach.</div>
+            <div class="milestone-card__event">Coach OBJ Appointed</div>
+            <div class="milestone-card__detail">Oliver B. Johnson becomes Nigeria's National Basketball Coach.</div>
           </div>
           <div class="milestone-card milestone-card--highlight">
             <div class="milestone-card__year">1990</div>
             <div class="milestone-card__event">African Junior Champions</div>
-            <div class="milestone-card__detail">Nigeria wins the African Junior Championship in Luanda, Angola — the nation's first continental junior title.</div>
+            <div class="milestone-card__detail">Nigeria wins the African Junior Championship in Luanda, Angola.</div>
+          </div>
+          <div class="milestone-card">
+            <div class="milestone-card__year">1993</div>
+            <div class="milestone-card__event">NBBF Inaugurated</div>
+            <div class="milestone-card__detail">NABBA becomes the Nigeria Basketball Federation, 4th March.</div>
           </div>
           <div class="milestone-card">
             <div class="milestone-card__year">1995</div>
-            <div class="milestone-card__event">1st NBBF Premier League</div>
-            <div class="milestone-card__detail">The inaugural 7-Up Premier League launches — a landmark moment for domestic basketball in Nigeria.</div>
+            <div class="milestone-card__event">1st Premier League</div>
+            <div class="milestone-card__detail">The inaugural 7-Up Premier League launches nationally.</div>
+          </div>
+          <div class="milestone-card milestone-card--highlight">
+            <div class="milestone-card__year">2003</div>
+            <div class="milestone-card__event">BB4P Founded</div>
+            <div class="milestone-card__detail">Coach OBJ launches Basketball for Peace across 16 Nigerian states.</div>
           </div>
           <div class="milestone-card milestone-card--highlight">
             <div class="milestone-card__year">2012</div>
             <div class="milestone-card__event">First Olympic Qualification</div>
-            <div class="milestone-card__detail">Nigeria's men qualify for the Olympic Games for the first time, competing at London 2012.</div>
+            <div class="milestone-card__detail">Nigeria's men qualify for the Olympic Games for the first time — London 2012.</div>
           </div>
           <div class="milestone-card milestone-card--highlight">
             <div class="milestone-card__year">2017</div>
             <div class="milestone-card__event">D'Tigress Win AfroBasket</div>
-            <div class="milestone-card__detail">Nigeria's women win the AfroBasket Championship in Mali — a defining moment for D'Tigress.</div>
+            <div class="milestone-card__detail">Nigeria's women win the AfroBasket Championship in Mali.</div>
           </div>
           <div class="milestone-card milestone-card--highlight">
             <div class="milestone-card__year">2019</div>
             <div class="milestone-card__event">D'Tigers Qualify for Tokyo</div>
-            <div class="milestone-card__detail">Nigeria's men qualify for the Tokyo 2020 Olympics at the FIBA World Cup in China.</div>
+            <div class="milestone-card__detail">Nigeria's men qualify for Tokyo 2020 at the FIBA World Cup in China.</div>
           </div>
           <div class="milestone-card milestone-card--highlight">
             <div class="milestone-card__year">2020</div>
             <div class="milestone-card__event">D'Tigress Qualify for Tokyo</div>
-            <div class="milestone-card__detail">Nigeria's women qualify for the Tokyo 2020 Olympics in Belgrade — both teams headed to the Games.</div>
+            <div class="milestone-card__detail">Both D'Tigers and D'Tigress headed to the Tokyo Olympic Games.</div>
           </div>
         </div>
         <div class="milestones-cta">
@@ -1580,9 +1613,9 @@ function landingPage() {
             <div class="landing__teaser-desc">AfroBasket, Olympics, Commonwealth Games and all FIBA events.</div>
           </div>
           <div class="landing__teaser-item">
-            <div class="landing__teaser-icon">📋</div>
-            <div class="landing__teaser-label">Analysis</div>
-            <div class="landing__teaser-desc">Editorial notes and a frank account of the politics that shaped Nigerian basketball.</div>
+            <div class="landing__teaser-icon">📰</div>
+            <div class="landing__teaser-label">Press &amp; Analysis</div>
+            <div class="landing__teaser-desc">1989 newspaper clippings, editorial notes and a frank account of the politics that shaped Nigerian basketball.</div>
           </div>
         </div>
         <div class="landing__teaser-cta">
@@ -1591,6 +1624,7 @@ function landingPage() {
         </div>
       </div>
     </div>
+
     <footer class="footer">
       <div class="footer__inner">
         <div class="footer__brand">Nigeria Basketball Archive</div>
