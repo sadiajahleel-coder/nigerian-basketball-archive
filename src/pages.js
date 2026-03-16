@@ -260,3 +260,29 @@ export const pressClippings1989 = {
     }
   ]
 };
+
+export const bb4pContent = {
+  title: "Basketball for Peace (BB4P)",
+  subtitle: "A Peace Movement-in-Motion",
+  founded: "2003",
+  website: "https://www.bb4p.org",
+  intro: "BB4P is a registered NGO founded by Coach OBJ in 2003 as implementing partners of USAID in Kaduna. It was designed to bring healing and peaceful coexistence among people in communities having experienced conflict.",
+  mission: "BB4P promotes Peace Education, Basketball and Peaceful Interaction among Youth for progress in their local communities. It uses basketball as an urgent tool to stop violent conflict among youth in their local communities.",
+  states: ["Kaduna", "Plateau", "Kano", "Lagos", "Niger", "Rivers", "Delta", "Katsina", "Zamfara", "Sokoto", "Bini Kebbi", "Bauchi", "Jigawa", "Gombe", "Adamawa", "Taraba", "F.C.T."],
+  stats: [
+    { num: "50+", label: "Peace Zones", sub: "Basketball courts established" },
+    { num: "16", label: "Nigerian States", sub: "With active Peace Zones" },
+    { num: "30+", label: "LGAs Reached", sub: "Local Government Areas" },
+    { num: "2003", label: "Founded", sub: "Over 17 years of work" }
+  ],
+  howItWorks: [
+    { num: "1", text: "BB4P trains Youth in Peace Making Skills and Basketball Fundamentals while providing them a Win/Lost Stipend on Competition Days." },
+    { num: "2", text: "BB4P uses Basketball as an urgent tool to Stop Violent Conflict among Youth in their Local (LGA) Communities." },
+    { num: "3", text: "BB4P establishes an Affordable Peace Zone (Basketball Facility) right in the Area of Conflict, where All Community Residents are Welcome." }
+  ],
+  peaceZone: "Each Peace Zone is established in Communities of Conflict with a Coach, Peace Manager and a minimum of 24 registered Players, and a minimum of 3 secondary schools attached where Peace Clubs of 20 Students (10 male & 10 female) meet periodically on issues of Peace Education and Community Out-Reach.",
+  partners: "Since 2003, BB4P has been an Implementing Partner of the United States Agency for International Development Office of Transition Initiative (USAID/OTI), International Foundation for Education and Self Help (IFESH), Conflict Abatement through Local Mitigation (CLAM), International Republican Institute (IRI) and Public Affairs Section United States Embassy (PAS) Abuja, Nigeria.",
+  staff: "The core staff of BB4P are Coach OBJ, Eddy Tox, Ademola Adigu and Engr. Ibrahim Enesi, with a BB4P Coordinator for each of the 16 states where Peace Zones exist.",
+  quote: "NEW IDEAS IS THE ENGINE ROOM THAT DRIVES BB4P and the SOLUTION for MOST PROBLEMS",
+  closing: "The Peace Zone is very popular in Grassroots Communities because it is very cheap to establish — it could be the first phase of a Local Community Centre or Sports Complex; all created in an atmosphere of peace where everyone is welcome. PEACE MUST REIGN! — Coach O.B.J., 2020"
+};

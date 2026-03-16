@@ -1,6 +1,6 @@
 import "./style.css";
 import { records, decades, categoryLabels } from "./data/records.js";
-import { editorialNotes, underlyingIssues, nbbfConstitution, pressClippings1989 } from "./pages.js";
+import { editorialNotes, underlyingIssues, nbbfConstitution, pressClippings1989, bb4pContent } from "./pages.js";
 const coaches = [
   {
     name: "Abdulrahman Mohammed.",
@@ -1022,6 +1022,7 @@ function nav() {
         <button class="nav__link ${page==="analysis"?"active":""}" data-nav="analysis">Analysis</button>
         <button class="nav__link ${page==="constitution"?"active":""}" data-nav="constitution">Constitution</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
+        <button class="nav__link ${page==="bb4p"?"active":""}" data-nav="bb4p">BB4P</button>
         <button class="nav__link ${page==="press"?"active":""}" data-nav="press">Press</button>
         <button class="nav__link ${page==="players"?"active":""}" data-nav="players">Players</button>
         <button class="nav__link ${page==="coaches"?"active":""}" data-nav="coaches">Coaches</button>
@@ -1728,6 +1729,69 @@ function signupPage() {
 }
 
 
+// ── BB4P ──────────────────────────────────────────────────
+function bb4pPage() {
+  const b = bb4pContent;
+
+  const stats = b.stats.map(s =>
+    '<div class="bb4p-stat">' +
+      '<div class="bb4p-stat__num">' + s.num + '</div>' +
+      '<div class="bb4p-stat__label">' + s.label + '</div>' +
+      '<div class="bb4p-stat__sub">' + s.sub + '</div>' +
+    '</div>'
+  ).join('');
+
+  const steps = b.howItWorks.map(s =>
+    '<div class="bb4p-step">' +
+      '<div class="bb4p-step__num">' + s.num + '</div>' +
+      '<div class="bb4p-step__text">' + s.text + '</div>' +
+    '</div>'
+  ).join('');
+
+  const stateList = b.states.map(s =>
+    '<span class="bb4p-state">' + s + '</span>'
+  ).join('');
+
+  return nav() +
+  '<div class="signup-page"><div class="signup-page__inner">' +
+  crumb("BB4P") +
+  '<div class="bb4p-hero">' +
+    '<div class="bb4p-hero__tag">Founded ' + b.founded + ' · <a href="' + b.website + '" target="_blank" class="bb4p-link">' + b.website + '</a></div>' +
+    '<h1 class="bb4p-hero__title">' + b.title + '</h1>' +
+    '<p class="bb4p-hero__sub">' + b.subtitle + '</p>' +
+    '<p class="bb4p-hero__intro">' + b.intro + '</p>' +
+  '</div>' +
+  '<div class="bb4p-stats">' + stats + '</div>' +
+  '<div class="bb4p-section">' +
+    '<h2 class="bb4p-section__title">Mission</h2>' +
+    '<p class="bb4p-section__body">' + b.mission + '</p>' +
+  '</div>' +
+  '<div class="bb4p-section">' +
+    '<h2 class="bb4p-section__title">How It Works</h2>' +
+    '<div class="bb4p-steps">' + steps + '</div>' +
+  '</div>' +
+  '<div class="bb4p-section">' +
+    '<h2 class="bb4p-section__title">The Peace Zone</h2>' +
+    '<p class="bb4p-section__body">' + b.peaceZone + '</p>' +
+  '</div>' +
+  '<div class="bb4p-section">' +
+    '<h2 class="bb4p-section__title">States with Peace Zones</h2>' +
+    '<div class="bb4p-states">' + stateList + '</div>' +
+  '</div>' +
+  '<div class="bb4p-section">' +
+    '<h2 class="bb4p-section__title">Partners</h2>' +
+    '<p class="bb4p-section__body">' + b.partners + '</p>' +
+  '</div>' +
+  '<div class="bb4p-section">' +
+    '<h2 class="bb4p-section__title">Core Staff</h2>' +
+    '<p class="bb4p-section__body">' + b.staff + '</p>' +
+  '</div>' +
+  '<blockquote class="bb4p-quote">' + b.quote + '</blockquote>' +
+  '<p class="bb4p-closing">' + b.closing + '</p>' +
+  '</div></div>' +
+  footer();
+}
+
 // ── PRESS ─────────────────────────────────────────────────
 function pressPage() {
   const articles = pressClippings1989.articles.map(a =>
@@ -2113,6 +2177,7 @@ function render() {
   else if (page === "constitution") app.innerHTML = constitutionPage();
   else if (page === "about") app.innerHTML = aboutPage();
   else if (page === "signup") app.innerHTML = signupPage();
+  else if (page === "bb4p") app.innerHTML = bb4pPage();
   else if (page === "press") app.innerHTML = pressPage();
   else if (page === "search") app.innerHTML = searchPage();
   else if (page === "players") app.innerHTML = playersPage();
