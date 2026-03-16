@@ -1019,6 +1019,7 @@ function nav() {
       <div class="nav__links">
         <button class="nav__link ${page==="home"?"active":""}" data-nav="home">Home</button>
         <button class="nav__link ${page==="records"?"active":""}" data-nav="records">Records</button>
+        <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
       </div>
@@ -1181,10 +1182,7 @@ function homePage() {
         <div class="hex-card__title">Press 1989</div>
         <div class="hex-card__desc">5 newspaper clippings — the only journalism preserved in the archive.</div>
       </div>
-      <div class="hex-card" data-nav="about">
-        <div class="hex-card__title">About</div>
-        <div class="hex-card__desc">Compiled by Coach OBJ — Oliver B. Johnson — from 1971.</div>
-      </div>
+
 
     </div>
 
