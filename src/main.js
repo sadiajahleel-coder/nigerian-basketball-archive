@@ -1,6 +1,6 @@
 import "./style.css";
 import { records, decades, categoryLabels } from "./data/records.js";
-import { editorialNotes, underlyingIssues, nbbfConstitution, pressClippings1989, bb4pContent } from "./pages.js";
+import { editorialNotes, underlyingIssues, nbbfConstitution, pressClippings1989, bb4pContent, testimonies, electionGuidelines2017 } from "./pages.js";
 const coaches = [
   {
     name: "Abdulrahman Mohammed.",
@@ -1019,6 +1019,8 @@ function nav() {
       <div class="nav__links">
         <button class="nav__link ${page==="home"?"active":""}" data-nav="home">Home</button>
         <button class="nav__link ${page==="records"?"active":""}" data-nav="records">Records</button>
+        <button class="nav__link ${page==="testimonies"?"active":""}" data-nav="testimonies">Testimonies</button>
+        <button class="nav__link ${page==="elections"?"active":""}" data-nav="elections">Election Guidelines</button>
         <button class="nav__link ${page==="about"?"active":""}" data-nav="about">About</button>
         <button class="nav__link ${page==="contribute"?"active":""}" data-nav="contribute">Contribute</button>
         <button class="nav__link nav__link--cta ${page==="signup"?"active":""}" data-nav="signup">Request Access</button>
@@ -1181,6 +1183,10 @@ function homePage() {
       <div class="hex-card" data-nav="press">
         <div class="hex-card__title">Press 1989</div>
         <div class="hex-card__desc">5 newspaper clippings — the only journalism preserved in the archive.</div>
+      </div>
+      <div class="hex-card" data-nav="testimonies">
+        <div class="hex-card__title">Testimonies</div>
+        <div class="hex-card__desc">Personal accounts from Isah Umar and Uche Nebedum — in their own words.</div>
       </div>
 
 
@@ -1740,6 +1746,62 @@ function signupPage() {
 }
 
 
+// ── ELECTION GUIDELINES ───────────────────────────────────
+function electionsPage() {
+  const eg = electionGuidelines2017;
+  const sections = eg.sections.map(function(s) {
+    return '<div class="analysis-subsection">' +
+      '<h3 class="analysis-subsection__title">' + s.heading + '</h3>' +
+      '<p class="analysis-subsection__body">' + s.body + '</p>' +
+    '</div>';
+  }).join('');
+
+  const timeline = '<div class="analysis-timeline">' +
+    '<h3 class="analysis-subsection__title">Election Timeline — 2017</h3>' +
+    '<table class="elec-table"><tbody>' +
+    eg.timeline.map(function(t) {
+      return '<tr><td class="elec-table__item">' + t.item + '</td><td class="elec-table__date">' + t.date + '</td></tr>';
+    }).join('') +
+    '</tbody></table></div>';
+
+  return nav() +
+  '<div class="signup-page"><div class="signup-page__inner">' +
+  crumb("Election Guidelines") +
+  '<h1 class="signup-page__title">' + eg.title + '</h1>' +
+  '<p class="signup-page__sub">' + eg.context + '</p>' +
+  sections +
+  timeline +
+  '</div></div>' +
+  footer();
+}
+
+// ── TESTIMONIES ───────────────────────────────────────────
+function testimoniesPage() {
+  const cards = testimonies.map(function(t) {
+    const paras = t.paragraphs.map(function(p) {
+      return '<p class="testimony__para">' + p + '</p>';
+    }).join('');
+    return '<div class="testimony-card">' +
+      '<div class="testimony-card__head">' +
+        '<div class="testimony-card__name">' + t.name + '</div>' +
+        '<div class="testimony-card__role">' + t.role + '</div>' +
+        '<div class="testimony-card__year">Contributed ' + t.year + '</div>' +
+      '</div>' +
+      '<p class="testimony__intro">' + t.intro + '</p>' +
+      '<div class="testimony__body">' + paras + '</div>' +
+    '</div>';
+  }).join('');
+
+  return nav() +
+  '<div class="signup-page"><div class="signup-page__inner">' +
+  crumb("Testimonies") +
+  '<h1 class="signup-page__title">Personal Testimonies</h1>' +
+  '<p class="signup-page__sub">First-hand accounts from people who lived Nigerian basketball — written in their own words as contributions to this archive.</p>' +
+  '<div class="testimonies-list">' + cards + '</div>' +
+  '</div></div>' +
+  footer();
+}
+
 // ── BB4P ──────────────────────────────────────────────────
 function bb4pPage() {
   const b = bb4pContent;
@@ -2189,6 +2251,8 @@ function render() {
   else if (page === "about") app.innerHTML = aboutPage();
   else if (page === "signup") app.innerHTML = signupPage();
   else if (page === "bb4p") app.innerHTML = bb4pPage();
+  else if (page === "testimonies") app.innerHTML = testimoniesPage();
+  else if (page === "elections") app.innerHTML = electionsPage();
   else if (page === "press") app.innerHTML = pressPage();
   else if (page === "search") app.innerHTML = searchPage();
   else if (page === "players") app.innerHTML = playersPage();

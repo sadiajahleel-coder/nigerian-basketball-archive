@@ -286,3 +286,85 @@ export const bb4pContent = {
   quote: "NEW IDEAS IS THE ENGINE ROOM THAT DRIVES BB4P and the SOLUTION for MOST PROBLEMS",
   closing: "The Peace Zone is very popular in Grassroots Communities because it is very cheap to establish — it could be the first phase of a Local Community Centre or Sports Complex; all created in an atmosphere of peace where everyone is welcome. PEACE MUST REIGN! — Coach O.B.J., 2020"
 };
+
+export const testimonies = [
+  {
+    name: "Isah Umar",
+    role: "Player · Niger Potters · NBBF North Central Zone Representative",
+    year: "2018",
+    intro: "Written by Isah Umar — known as 'Gudus' (the Hammer) at Niger Potters, Minna — as a contribution to this archive.",
+    paragraphs: [
+      "I was born in Kontagora, in Niger state, Nigeria. As a son of a police commissioner, I have been to almost all the states in Northern Nigeria playing basketball.",
+      "I started playing basketball in Maiduguri, Borno State. I changed location as my dad moved around — from Maiduguri to Gusau in Zamfara State, Sokoto, Ahmadu Bello University in Zaria, Kaduna State, and finally Niger Potters of Minna, Niger State, where I was famously known as Gudus — i.e. hammer. I am not going into the details of why they called me that for now.",
+      "It was in ABU, Zaria that I met Coach OBJ. As a coach and a mentor, he was instrumental in my going to the USA. He believed and trusted me — the rest is history. It was Coach OBJ that helped me secure admission at St Augustine University, North Carolina to further my education.",
+      "Then in 2006 I was asked by the then NBBF president to serve as a liaison officer between the NBBF and the Nigerian players based in the USA. I was made the coordinator for both the male and the female teams. My job involved reaching out to players and parents to seek permission for players in the USA to have the opportunity of playing for Nigeria.",
+      "With all my success and basketball prowess, I decided to give back to the community I once lived and played for — hence I started the Isah Umar Foundation to purely support kids in various communities across the country. I want all kids to have the opportunity to be successful.",
+      "The Foundation is focused towards making youths have a positive impact on the game of basketball and to motivate them educationally, increase their mental wellbeing and self-esteem to reach their potentials, centered on the values of team work, determination and good sportsmanship.",
+      "The Foundation together with ABU Zaria have brought in experienced coaches and retired NBA star players to Zaria to help impact the game of basketball and to motivate them. The impact of the Foundation is felt in all the North Central zone. Kids in these states have severally received playing shoes, jerseys, balls and other items from the Foundation.",
+      "The Foundation have built two standard basketball courts in Kontagora — my home town — and Minna the state capital, all in furtherance of the game. Worthy mentioning here is the tremendous assistance the Foundation gives the state basketball team, the Niger Potters, in jerseys, playing shoes, players allowances and other materials for the past fifteen years.",
+      "I am the current chairman, Niger State Basketball Association since 2017. The Isah Umar Foundation is here to support kids from all walks of life in the game of basketball — to achieve academically and to further the game at grassroots level."
+    ]
+  },
+  {
+    name: "Uche Vickie Nebedum",
+    role: "Captain · Coach · Secretary General NABBA/NBBF · Vice President NBBF · FIBA Hall of Fame",
+    year: "2020",
+    intro: "A personal letter written by Uche Vickie Nebedum to Coach OBJ, forwarded as a contribution to this archive.",
+    paragraphs: [
+      "Good day OBJ, I wish to forward to you the necessary information that you requested from me.",
+      "My career in Nigerian basketball spans over three decades: Captain of East Central State Basketball 1972–1974. Captain, National Basketball (Women) 1972–1978. Assistant Coach/Coach, National Basketball 1974–1983. Secretary General, NABBA/NBBF 1983–1985. Vice President NBBF 1999–2004.",
+      "Awards: FIBA-AFRIQUE Basketball Gold Award 2011 — for outstanding performance and contribution in Basketball, with induction into the Basketball Hall of Fame in Africa. Best female basketball player in Nigeria, with scholarship to study Physical and Health Education at Karl Marx University in Leipzig, East Germany. Most outstanding female basketball coach in Nigeria.",
+      "Unfortunately, I was unable to forward this information earlier than now due to some unforeseen circumstance — kindly accept my apology. Thanks. Regards to your family. Remain safe always. God bless.",
+      "Uche Vickie Nebedum"
+    ]
+  }
+];
+
+export const electionGuidelines2017 = {
+  title: "Guidelines for Election into the Boards of National Sports Federations",
+  context: "These guidelines were approved by the Honourable Minister of Sports, Mr. Solomon Dalung, in 2017 and are reproduced here as part of the 2017 NBBF records. They governed the elections in which Engineer Ahmadu Musa Kida became NBBF President.",
+  sections: [
+    {
+      heading: "1.0 Preamble",
+      body: "The various Sports Federations have the authority to administer their respective sports as recognized by the Federal Ministry of Youth & Sports Development (FMYSD) and affiliated to the Nigeria Olympic Committee (NOC). These Election Guidelines spell out the composition of the Board, Eligibility, Electoral Committees, Election Regulations, Electoral Appeals Committee, and Inauguration procedures."
+    },
+    {
+      heading: "2.0 The Board — Composition",
+      body: "Each Board shall comprise: the President; Vice President(s); 11 other members or as provided for in their relevant constitution; and a Secretary General. Membership shall be drawn from: Six (6) Zonal Representatives (each representing a Geo-Political zone); One (1) Athletes' Representative; One (1) Institutional Representative; One or two Representative(s) of the International Sports body; One (1) Representative of the National Association of Women in Sports (NAWIS); One (1) Representative of NAPHER/SD; One (1) Philanthropist or Ex-officio member or Sponsor; One (1) Representative of the Technical Bodies of the Sport."
+    },
+    {
+      heading: "3.0 Eligibility",
+      body: "For a candidate to be eligible for membership of the Board of a National Sports Federation, he or she shall: hold an educational qualification not below the West African School Certificate (WASC) or its equivalent; not be less than thirty (30) years of age at the date of the election (except in the case of Athletes' Representative); have a clear understanding of the Federation's responsibilities, values and norms; not have been convicted of any crime within or outside Nigeria; be a confirmed citizen of the Federal Republic of Nigeria (for the post of President); and have a veritable source of income."
+    },
+    {
+      heading: "4.0 Electoral Committees",
+      body: "Each NSF shall set up a National Electoral Committee of not more than 5 members to conduct the National Election. Members of the current Board shall not serve on the Electoral Committee. The electoral committees for the national elections shall include a Representative of the Federal Ministry of Youth & Sports. There shall also be a 2-member Zonal Electoral Committee for each sport and each zone."
+    },
+    {
+      heading: "5.0 Conduct of Election",
+      body: "All voting shall be by secret ballot. There shall be no voting by proxy at any of the elections. No candidate shall be voted for in absentia. Zonal Elections shall be held at the respective Zonal Headquarters of the FMY&SD, all simultaneously. For an election to be valid, not less than two-thirds (2/3) of the total number of the electorate must be present and vote. Winners shall be decided by a simple majority of the votes cast. In the case of a tie, there shall immediately be another round of voting until a winner emerges. Three (3) nominations shall be allowed for each position, which must be seconded by a member of the electorate."
+    },
+    {
+      heading: "5.1 Declaration of Result",
+      body: "The Chairman of an Electoral Committee shall announce the results immediately after the conclusion of the elections. Electronic copies of the results shall reach the Chairman of the Electoral Committee at the National level within three hours of conclusion. The duly signed copy shall be forwarded within 48 hours of the conclusion of the election."
+    },
+    {
+      heading: "6.0 Petitions and Appeals",
+      body: "In the case of dissatisfaction with any aspect of the conduct and/or result of the elections, a candidate may seek redress by submitting a written Petition to an Elections Petition Committee. The Ministry of Youth & Sports shall inaugurate a 7-member Electoral Appeals Committee. Aggrieved contestants may appeal with a non-refundable fee of N50,000 at the zonal level and N100,000 at the national level. Appellants not satisfied with the decision of the Electoral Appeal Committee may appeal to the Court of Arbitration for Sports (CAS). The decision of CAS shall be final."
+    },
+    {
+      heading: "7.0 Inauguration",
+      body: "All elected Boards of the National Sports Federations shall be inaugurated by the Honourable Minister, Federal Ministry of Youth and Sports Development, at a date convenient to the Honourable Minister, but not later than four (4) weeks from the conclusion of elections."
+    }
+  ],
+  timeline: [
+    { item: "Release of Nomination Forms", date: "20–24 Feb 2017" },
+    { item: "Deadline for Submission of Nomination Forms", date: "16 Mar 2017" },
+    { item: "Zonal Elections", date: "13 Apr 2017" },
+    { item: "Election of Federation Presidents & Vice Presidents", date: "27 Apr 2017" },
+    { item: "Hearing of Petitions", date: "1–5 May 2017" },
+    { item: "Hearing of Appeal Cases including CAS", date: "8–19 May 2017" },
+    { item: "Bye-Elections (if needed)", date: "25 May 2017" },
+    { item: "Inauguration of Members", date: "To be decided by the Minister" }
+  ]
+};
